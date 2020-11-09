@@ -1,11 +1,14 @@
 .footer {
   margin: 0 auto;
   max-width: 1440px;
-  /*width: calc(100% - 7.25%);*/
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
   border: 1px solid red;
+  display: grid;
+  grid-template-columns: auto repeat(2, minmax(min-content, max-content));
+  grid-template-areas: "copyright text icon";
+  padding-left: 7.25%;
+  padding-right: 7.25%;
 }
 
 .footer__copyright {
@@ -17,11 +20,25 @@
   color: #B6BCBF;
   padding-top: 32px;
   padding-bottom: 26px;
+  grid-area: copyright;
 }
 
 .footer__navigation {
   padding-top: 30px;
   padding-bottom: 28px;
+}
+
+.footer__navigation_type_text {
+  grid-area: text;
+  justify-self: end;
+  padding-right: 40px;
+  transition: all ease 0.5s;
+}
+
+.footer__navigation_type_icon {
+  grid-area: icon;
+  justify-self: end;
+  transition: all ease 0.5s;
 }
 
 .footer__links {
@@ -34,11 +51,7 @@
 }
 
 .footer__list:not(:last-of-type) {
-  padding-right: 20px;
-}
-
-.footer__list:nth-of-type(2) {
-  padding-right: 40px;
+  padding-right: 25px;
 }
 
 .footer__link {
@@ -48,15 +61,86 @@
   color: #1A1B22;
 }
 
-.footer__social-icon {
+.footer__link_type_fb {
+  display: block;
   width: 20px;
   height: 20px;
-  border-radius: 2px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  cursor: pointer;
+  background-image: url(../../images/facebook.svg);
+}
+
+.footer__link_type_git {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  cursor: pointer;
+  background-image: url(../../images/github.svg);
 }
 
 @media screen and (max-width: 768px) {
   .footer {
     padding-right: 41px;
     padding-left: 40px;
+    max-width: 768px;
+  }
+
+  .footer__navigation_type_text {
+    padding-right: 30px;
+  }
+
+  .footer__list:not(:last-of-type) {
+    padding-right: 20px;
+  }
+
+  .footer__link_type_fb {
+    width: 22px;
+    height: 22px;
+    background-image: url(../../images/social_type_fb~ignore.svg);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+            "text icon"
+            "copyright copyright ";
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: space-between;
+    align-content: space-around;
+  }
+
+  .footer__navigation_type_text{
+    justify-self: auto;
+    padding-bottom: 0;
+  }
+  .footer__navigation_type_icon{
+    padding-top: 22px;
+  }
+
+  .footer__links_type_text {
+    grid-area: ultext;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__list:not(:last-of-type) {
+    padding-bottom: 25px;
+    padding-right: 28px;
+  }
+
+  .footer__link_type_fb {
+    background-image: url(../../images/facebook.svg);
+  }
+  .footer__copyright{
+    padding-top: 38px;
   }
 }

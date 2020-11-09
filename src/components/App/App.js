@@ -13,7 +13,7 @@ function App() {
 
         <About/>
       </main>
-      {/*<Footer/>*/}
+      <Footer/>
     </div>
   );
 }
