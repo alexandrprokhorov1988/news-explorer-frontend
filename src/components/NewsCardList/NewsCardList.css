@@ -1,0 +1,125 @@
+.search-results {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1440px;
+  width: calc(100% - 14.4%);
+}
+
+.search-results__title {
+  font-family: 'RobotoSlab', 'Arial', 'Helvetica', sans-serif;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1A1B22;
+  margin: 0;
+  padding: 0;
+  padding-top: 80px;
+}
+
+.search-results__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 16px;
+  padding-top: 64px;
+  justify-items: center;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  max-height: 576px;
+  height: 100%;
+  /*background: rgba(8, 29, 45, 0.1);*/
+  /*filter: blur(58px);*/
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all ease 0.5s;
+  align-items: center;
+}
+
+.news-card:hover {
+  box-shadow: 0 23px 75px -30px rgba(0, 0, 0, 0.5);
+}
+
+.news-card__button-add {
+  background-color: #FFFFFF;;
+  background-image: url(../../images/button-add-icon.svg);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 40px;
+  height: 40px;
+  background-size: auto;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all .1s ease;
+  position: absolute;
+  border-radius: 8px;
+  top: 24px;
+  right: 24px;
+  /*display: none;*/
+  z-index: 5;
+}
+
+.news-card__button-add-popup {
+  display: none;
+  position: absolute;
+  top: 24px;
+  left: 149px;
+  background: #FFFFFF;
+  box-shadow: 0 10px 22px rgba(59, 74, 116, 0.1);
+  border-radius: 10px;
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  width: 182px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.news-card__button-add:hover .news-card__button-add-popup {
+  display: block;
+}
+
+.news-card__img {
+  border-radius: 20px 20px 0 0;
+}
+
+.news-card__description-container {
+  width: calc(100% - 12%);
+}
+
+.news-card__date {
+
+}
+
+.news-card__title {
+
+}
+
+.news-card__text {
+
+}
+
+.news-card__source {
+  font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #B6BCBF;
+}
+
