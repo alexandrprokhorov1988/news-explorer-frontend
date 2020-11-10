@@ -1,18 +1,15 @@
 .about {
   margin: 0 auto;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 1440px;
-  border: 1px solid red;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: minmax(min-content, max-content) auto;
   grid-template-areas:
           "photo text";
   grid-gap: 56px;
   padding-bottom: 80px;
-  padding-left: 7.25%;
-  padding-right: 15%;
   transition: all ease 0.5s;
+  max-width: 1232px;
+  width: calc(100% - 14.4%);
 }
 
 .about__photo {
@@ -57,10 +54,9 @@
 
 @media screen and (max-width: 768px) {
   .about {
-    padding-left: 5.2%;
-    padding-right: 5.2%;
     grid-gap: 32px;
     padding-bottom: 61px;
+    width: calc(100% - 10.4%);
   }
 
   .about__photo {

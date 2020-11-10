@@ -1,0 +1,33 @@
+.preloader {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.preloader__img {
+  width: 74px;
+  height: 74px;
+  border: double 2px transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, #ffffff, #888);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: spin 1.5s infinite linear;
+}
+
+.preloader__text {
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+  padding: 0;
+  margin: 0;
+  padding-top: 24px;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
