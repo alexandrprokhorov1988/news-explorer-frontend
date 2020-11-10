@@ -14,7 +14,7 @@ function NewsCardList() {
       <h1 className="search-results__title">Результаты поиска</h1>
       <div className="search-results__container">
         <article className="news-card">
-          <button type="button" className="news-card__button-add"/>
+          <button type="button" className="news-card__button-add news-card__button-add_active"/>
           <span className="news-card__button-add-popup">Войдите, чтобы сохранять статьи</span>
           <span className="news-card__category news-card__category_active">Природа</span>
           <img className="news-card__img" src={img8} alt="Картинка"/>
