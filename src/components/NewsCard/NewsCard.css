@@ -14,9 +14,8 @@
   box-shadow: 0 23px 75px -30px rgba(0, 0, 0, 0.5);
 }
 
-.news-card__button-add {
+.news-card__button {
   background-color: #FFFFFF;;
-  background-image: url(../../images/button-add-icon.svg);
   background-repeat: no-repeat;
   background-position: 50%;
   width: 40px;
@@ -32,15 +31,27 @@
   right: 24px;
 }
 
-.news-card__button-add:hover {
+.news-card__button_type_add {
+  background-image: url(../../images/button-add-icon.svg);
+}
+
+.news-card__button_type_delete {
+  background-image: url(../../images/button-delete-icon.svg);
+}
+
+.news-card__button_type_add:hover {
   background-image: url(../../images/button-add-icon-hovered.svg);
 }
 
-.news-card__button-add_active {
+.news-card__button_type_delete:hover {
+  background-image: url(../../images/button-delete-icon-hovered.svg);
+}
+
+.news-card__button_active {
   background-image: url(../../images/button-add-icon-marked.svg);
 }
 
-.news-card__button-add-popup {
+.news-card__button-popup {
   display: none;
   position: absolute;
   top: 24px;
@@ -61,7 +72,7 @@
   align-items: center;
 }
 
-.news-card__button-add:hover + .news-card__button-add-popup {
+.news-card__button_type_add:hover + .news-card__button-popup {
   display: flex;
 }
 
@@ -114,6 +125,8 @@
   font-size: 26px;
   line-height: 30px;
   font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
+  font-style: normal;
+  font-weight: normal;
   color: #1A1B22;
   margin: 0;
   padding: 12px 0 0 0;
@@ -137,6 +150,7 @@
 
 .news-card__source {
   font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
+  font-style: normal;
   letter-spacing: 0.4px;
   text-transform: uppercase;
   font-size: 16px;
@@ -148,12 +162,12 @@
 }
 
 @media screen and (max-width: 768px) {
-  .news-card__button-add {
+  .news-card__button_type_add {
     top: 8px;
     right: 8px;
   }
 
-  .news-card__button-add:hover + .news-card__button-add-popup {
+  .news-card__button_type_add:hover + .news-card__button-popup {
     display: none;
   }
 

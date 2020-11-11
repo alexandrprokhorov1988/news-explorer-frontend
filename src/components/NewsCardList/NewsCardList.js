@@ -10,12 +10,13 @@ import Preloader from '../../components/Preloader/Preloader';
 function NewsCardList() {
 
   return (
-    <section className="search-results">
-      <h1 className="search-results__title">Результаты поиска</h1>
-      <div className="search-results__container">
+    <section className="news-card-list">
+      <h1 className="news-card-list__title">Результаты поиска</h1>
+      <div className="news-card-list__container">
         <article className="news-card">
-          <button type="button" className="news-card__button-add news-card__button-add_active"/>
-          <span className="news-card__button-add-popup">Войдите, чтобы сохранять статьи</span>
+          <button type="button"
+                  className="news-card__button news-card__button_type_add news-card__button_type_add_active"/>
+          <span className="news-card__button-popup">Войдите, чтобы сохранять статьи</span>
           <span className="news-card__category news-card__category_active">Природа</span>
           <img className="news-card__img" src={img8} alt="Картинка"/>
           <div className="news-card__description-container">
@@ -31,8 +32,8 @@ function NewsCardList() {
           </div>
         </article>
         <article className="news-card">
-          <button type="button" className="news-card__button-add news-card__button-add_active"/>
-          <span className="news-card__button-add-popup">Войдите, чтобы сохранять статьи</span>
+          <button type="button" className="news-card__button news-card__button_type_add news-card__button_active"/>
+          <span className="news-card__button-popup">Войдите, чтобы сохранять статьи</span>
           <span className="news-card__category news-card__category_active">Природа</span>
           <img className="news-card__img" src={img4} alt="Картинка"/>
           <div className="news-card__description-container">
@@ -72,8 +73,8 @@ function NewsCardList() {
           </div>
         </article>
         <article className="news-card">
-          <button type="button" className="news-card__button-add"/>
-          <span className="news-card__button-add-popup">Войдите, чтобы сохранять статьи</span>
+          <button type="button" className="news-card__button news-card__button_type_add"/>
+          <span className="news-card__button-popup">Войдите, чтобы сохранять статьи</span>
           <span className="news-card__category news-card__category_active">Природа</span>
           <img className="news-card__img" src={img7} alt="Картинка"/>
           <div className="news-card__description-container">
@@ -86,7 +87,8 @@ function NewsCardList() {
                 новый фотопроект Игоря Шпиленка</h2>
               <p className="news-card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала
                 складываться
-                система нацио                система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.
+                система нацио система национальных парков – охраняемых территорий, где и сегодня каждый может
+                приобщиться к природе.
                 система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.
                 система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.
                 система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.
@@ -97,8 +99,8 @@ function NewsCardList() {
           </div>
         </article>
         <article className="news-card">
-          <button type="button" className="news-card__button-add"/>
-          <span className="news-card__button-add-popup">Войдите, чтобы сохранять статьи</span>
+          <button type="button" className="news-card__button news-card__button_type_add"/>
+          <span className="news-card__button-popup">Войдите, чтобы сохранять статьи</span>
           <span className="news-card__category news-card__category_active">Природа</span>
           <img className="news-card__img" src={img8} alt="Картинка"/>
           <div className="news-card__description-container">
@@ -114,7 +116,7 @@ function NewsCardList() {
           </div>
         </article>
       </div>
-      <button type="button" className="search-results__button-more">Показать еще</button>
+      <button type="button" className="news-card-list__button-more">Показать еще</button>
       <Preloader/>
       <NotFoundResults/>
     </section>
