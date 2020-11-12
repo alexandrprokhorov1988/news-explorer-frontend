@@ -6,13 +6,13 @@ import NewsCardList from '../../components/NewsCardList/NewsCardList';
 import Header from '../../components/Header/Header';
 import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
+import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
-  const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(true);
+  const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
-  const [popupState, setPopupState] = React.useState(true);
 
   function handleEscClose(e) {
     if (e.key === 'Escape') {
@@ -20,21 +20,15 @@ function App() {
     }
   }
 
-  function handlePopupState() {
-    setPopupState(!popupState);
-    closeAllPopups();
-    popupState ? handleRegisterPopupOpen() : handleLoginPopupOpen();
-  }
-
   function handleRegisterPopupOpen() {
+    closeAllPopups();
     setRegisterPopupOpen(true);
-    setPopupState(true);
     document.addEventListener('keydown', handleEscClose);
   }
 
   function handleLoginPopupOpen() {
+    closeAllPopups();
     setLoginPopupOpen(true);
-    setPopupState(false);
     document.addEventListener('keydown', handleEscClose);
   }
 
@@ -58,15 +52,21 @@ function App() {
         onClose={closeAllPopups}
         // onRegister={handleRegister}
         isLoading={isLoading}
-        popupState={popupState}
+        onButtonLoginClick={handleLoginPopupOpen}
+        isRegisterPopupOpen={isRegisterPopupOpen}
       />
       <LoginPopup
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}
         // onLogin={handleLogin}
         isLoading={isLoading}
-        popupState={popupState}
-        onPopupState={handlePopupState}
+        onButtonRegisterClick={handleRegisterPopupOpen}
+        isRegisterPopupOpen={isRegisterPopupOpen}
+      />
+      <ConfirmPopup
+        isOpen={isConfirmPopupOpen}
+        onClose={closeAllPopups}
+        onButtonClick={handleLoginPopupOpen}
       />
     </div>
   );

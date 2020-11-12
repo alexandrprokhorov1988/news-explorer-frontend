@@ -1,10 +1,10 @@
 import React from 'react';
 import './PopupWithForm.css';
 
-function PopupWithForm({ isOpen, popupState, onClose, onSubmit, title, children, onPopupState }) {
+function PopupWithForm({ isOpen, onClose, onSubmit, title, children, onButtonClick, isRegisterPopupOpen }) {
 
-  function handleClick(){
-    onPopupState(popupState);
+  function handleClick() {
+    onButtonClick();
   }
 
   return (
@@ -18,8 +18,8 @@ function PopupWithForm({ isOpen, popupState, onClose, onSubmit, title, children,
         <p className="popup__text">или</p>
         <button type="button"
                 className="popup__change-button"
-        onClick={handleClick}>
-          {popupState ? 'Войти' : 'Зарегистрироваться'}
+                onClick={handleClick}>
+          {!isRegisterPopupOpen ? 'Зарегистрироваться' : 'Войти'}
         </button>
       </div>
     </div>

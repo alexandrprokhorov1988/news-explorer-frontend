@@ -2,9 +2,9 @@ import React from 'react';
 import PopupWithForm from '../../components/PopupWithForm/PopupWithForm';
 import {useFormValidation} from '../../hooks/useFormValidation';
 
-function RegisterPopup({ isOpen, onClose, onRegister, isLoading }) {
+function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpen, onButtonLoginClick }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormValidation();
-  const [ requestMsg, setRequestMsg ] = React.useState(null);
+  const [requestMsg, setRequestMsg] = React.useState(null);
 
   React.useEffect(() => {
     resetForm();
@@ -24,7 +24,9 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading }) {
       title="Регистрация"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      onButtonClick={onButtonLoginClick}
+      isRegisterPopupOpen={isRegisterPopupOpen}>
       <label htmlFor="email" className="form__input-label">Email</label>
       <input className="form__input"
              type="email"
@@ -69,7 +71,7 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading }) {
              type="submit"
              name="submit"
              disabled={!isValid || isLoading}
-             value={`${isLoading ? 'Вход...' : 'Войти'}`}
+             value={`${isLoading ? 'Регистрация...' : 'Зарегистрироваться'}`}
       />
     </PopupWithForm>
   );
