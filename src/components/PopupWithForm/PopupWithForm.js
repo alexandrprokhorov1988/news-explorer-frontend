@@ -7,9 +7,18 @@ function PopupWithForm({ isOpen, onClose, onSubmit, title, children, onButtonCli
     onButtonClick();
   }
 
+  function stopBubble(evt) {
+    evt.stopPropagation();
+  }
+
+  function close() {
+    onClose();
+  }
+
   return (
-    <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
-      <div className="popup__container">
+    <div className={`popup ${isOpen ? 'popup_opened' : ''}`}
+         onClick={close}>
+      <div className="popup__container" onClick={stopBubble}>
         <button type="button" className="popup__close-button" onClick={onClose}/>
         <h2 className="popup__title">{title}</h2>
         <form action="#" method="post" className="form" noValidate onSubmit={onSubmit}>

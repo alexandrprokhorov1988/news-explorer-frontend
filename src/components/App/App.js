@@ -13,6 +13,7 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
 
   function handleEscClose(e) {
     if (e.key === 'Escape') {
@@ -41,7 +42,12 @@ function App() {
 
   return (
     <div className="page">
-      <Header/>
+      <Header
+        loggedIn={loggedIn}
+        onSignIn={handleLoginPopupOpen}
+        // userData={userData}
+        // onSignOut={handleSignOut}
+      />
       <main className="main">
         <NewsCardList/>
         <About/>

@@ -84,6 +84,7 @@
     padding-right: 41px;
     padding-left: 40px;
     max-width: 768px;
+    width: calc(100% - 10.4%);
   }
 
   .footer__navigation_type_text {

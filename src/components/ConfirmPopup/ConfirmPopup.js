@@ -1,7 +1,8 @@
 import React from 'react';
+import './../PopupWithForm/PopupWithForm.css';
 import './ConfirmPopup.css';
 
-function ConfirmPopup({ isOpen, onClose, onSubmit, title, children, onButtonClick }) {
+function ConfirmPopup({ isOpen, onClose, onButtonClick }) {
 
   function handleClick() {
     onButtonClick();

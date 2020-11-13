@@ -179,6 +179,14 @@
   max-width: 360px;
   height: 64px;
   margin-top: 8px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.form__submit-button:hover{
+  background: #347EFF;
+  box-shadow: 0 5px 15px rgba(14, 26, 57, 0.2);
 }
 
 .form__submit-button_inactive {
@@ -201,5 +209,4 @@
     height: 100vh;
     margin-top: 156px;
   }
-
 }
