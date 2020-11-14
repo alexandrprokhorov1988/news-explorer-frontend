@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
+import Main from '../../components/Main/Main';
 import Footer from '../../components/Footer/Footer';
-import About from '../../components/About/About';
-import NewsCardList from '../../components/NewsCardList/NewsCardList';
 import Header from '../../components/Header/Header';
 import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
@@ -48,10 +47,7 @@ function App() {
         // userData={userData}
         // onSignOut={handleSignOut}
       />
-      <main className="main">
-        <NewsCardList/>
-        <About/>
-      </main>
+      <Main/>
       <Footer/>
       <RegisterPopup
         isOpen={isRegisterPopupOpen}

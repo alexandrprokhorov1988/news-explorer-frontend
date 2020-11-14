@@ -51,7 +51,7 @@ function LoginPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpe
       <span className={`form__error ${isValid ? 'form__error_hide' : ''}`}>{errors.password || ''}</span>
       <span
         className={`form__error form__error_type_server-msg ${isValid ? 'form__error_hide' : ''}`}>{requestMsg || ''}</span>
-      <input className="form__submit-button"
+      <input className={`form__submit-button ${!isValid ? 'form__submit-button_inactive' : '' }`}
              type="submit"
              name="submit"
              disabled={!isValid || isLoading}
