@@ -14,11 +14,13 @@
   transition: all ease .5s;
   position: relative;
 }
-.header__container{
+
+.header__container {
   width: 100%;
   max-width: 608px;
 }
-.header__title{
+
+.header__title {
   font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
   font-size: 60px;
   line-height: 64px;
@@ -32,7 +34,7 @@
   transition: all ease .5s;
 }
 
-.header__subtitle{
+.header__subtitle {
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
@@ -51,13 +53,15 @@
     padding-right: 20.3%;
     align-items: start;
   }
-  .header__title{
+
+  .header__title {
     max-width: 385px;
     padding-top: 104px;
     font-size: 36px;
     line-height: 40px;
   }
-  .header__subtitle{
+
+  .header__subtitle {
     max-width: 452px;
     padding-top: 16px;
   }
@@ -71,7 +75,8 @@
     padding-right: 5%;
     align-items: start;
   }
-  .header__title{
+
+  .header__title {
     padding-top: 86px;
   }
 }

@@ -44,8 +44,11 @@
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
   font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
+}
+
+.navigation__logo_theme_main {
+  color: #FFFFFF;
 }
 
 .navigation__logo_theme_saved-news {
@@ -67,12 +70,20 @@
   grid-area: button;
 }
 
-.navigation__button_type_open {
+.navigation__button_type_open-main {
   background-image: url(../../images/close.svg);
 }
 
-.navigation__button_type_close {
+.navigation__button_type_close-main {
   background-image: url(../../images/menu.svg);
+}
+
+.navigation__button_type_open-saved-news {
+  background-image: url(../../images/close-black.svg);
+}
+
+.navigation__button_type_close-saved-news {
+  background-image: url(../../images/menu-black.svg);
 }
 
 .nav {
@@ -105,20 +116,22 @@
   color: #B6BCBF;
 }
 
-.nav__link_active-main {
-  border-bottom: 3px solid #FFFFFF;
+.nav__link_theme_main {
   color: #FFFFFF;
-  padding-bottom: 26px;
-}
-
-.nav__link_active-saved-news {
-  border-bottom: 3px solid #1A1B22;
-  color: #1A1B22;
   padding-bottom: 26px;
 }
 
 .nav__link_theme_saved-news {
   color: #1A1B22;
+  padding-bottom: 26px;
+}
+
+.nav__link_active-main {
+  border-bottom: 3px solid #FFFFFF;
+}
+
+.nav__link_active-saved-news {
+  border-bottom: 3px solid #1A1B22;
 }
 
 .nav__button {
@@ -126,9 +139,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #FFFFFF;
   background: transparent;
-  border: 1px solid #FFFFFF;
   border-radius: 100px;
   height: 48px;
   padding: 0 12px;
@@ -138,6 +149,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.nav__button_theme_main {
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
 }
 
 .nav__button_theme_saved-news {
@@ -172,6 +188,10 @@
     padding: 0;
   }
 
+  .navigation_type_open-main {
+    background: #1A1B22;
+  }
+
   .navigation__button {
     display: block;
   }
@@ -182,15 +202,14 @@
     align-items: center;
   }
 
-  .navigation_theme_main {
-    background: #1A1B22;
-  }
-
   .nav {
     overflow: hidden;
     width: 100%;
-    background: #1A1B22;
     max-height: 0;
+  }
+
+  .nav_theme_main {
+    background: #1A1B22;
   }
 
   .nav_theme_saved-news {
@@ -213,11 +232,11 @@
     border-radius: 16px;
   }
 
-  .nav__link_active-main {
+  .nav__link_theme_main {
     border: none;
   }
 
-  .nav__link_active-saved-news {
+  .nav__link_theme-saved-news {
     border: none;
   }
 

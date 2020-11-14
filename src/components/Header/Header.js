@@ -3,7 +3,7 @@ import './Header.css';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Navigation from '../../components/Navigation/Navigation';
 
-function Header({loggedIn, onSignIn, onSignOut}) {
+function Header({loggedIn, userData, onSignIn, onSignOut}) {
 
   return (
     <header className="header">
@@ -11,6 +11,8 @@ function Header({loggedIn, onSignIn, onSignOut}) {
         loggedIn={loggedIn}
         onSignIn={onSignIn}
         onSignOut={onSignOut}
+        userData={userData}
+        theme={'main'}
       />
       <div className="header__container">
         <h1 className="header__title">Что творится в мире?</h1>

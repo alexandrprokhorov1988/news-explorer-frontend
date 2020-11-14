@@ -1,8 +1,10 @@
 import React from 'react';
+import {Redirect, Route, Switch, useHistory} from 'react-router-dom';
 import './App.css';
 import Main from '../../components/Main/Main';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import SavedNewsHeader from '../../components/SavedNewsHeader/SavedNewsHeader';
 import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
@@ -41,13 +43,23 @@ function App() {
 
   return (
     <div className="page">
-      <Header
-        loggedIn={loggedIn}
-        onSignIn={handleLoginPopupOpen}
-        // userData={userData}
-        // onSignOut={handleSignOut}
-      />
-      <Main/>
+      <Switch>
+        <Route exact path="/">
+          <Header
+            loggedIn={loggedIn}
+            onSignIn={handleLoginPopupOpen}
+            // userData={userData}
+            // onSignOut={handleSignOut}
+          />
+          <Main/>
+        </Route>
+        <Route exact path="/saved-news">
+          <SavedNewsHeader
+            loggedIn={loggedIn}
+            // onSignOut={handleSignOut}
+          />
+        </Route>
+      </Switch>
       <Footer/>
       <RegisterPopup
         isOpen={isRegisterPopupOpen}
