@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect, Route, Switch, useHistory} from 'react-router-dom';
 import './App.css';
 import Main from '../../components/Main/Main';
+import SavedNews from '../../components/SavedNews/SavedNews';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import SavedNewsHeader from '../../components/SavedNewsHeader/SavedNewsHeader';
@@ -58,6 +59,7 @@ function App() {
             loggedIn={loggedIn}
             // onSignOut={handleSignOut}
           />
+          <SavedNews/>
         </Route>
       </Switch>
       <Footer/>

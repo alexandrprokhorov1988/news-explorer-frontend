@@ -13,10 +13,14 @@
 }
 
 .about__photo {
-  width: 100%;
+  /*width: 100%;*/
   object-fit: contain;
   max-width: 464px;
-  padding-top: 80px;
+  /*padding-top: 80px;*/
+  width: 464px;
+  height: 464px;
+  border-radius: 100%;
+  margin-top: 80px;
   grid-area: photo;
   align-self: center;
   transition: all ease 0.5s;
@@ -60,8 +64,9 @@
   }
 
   .about__photo {
-    max-width: 232px;
-    padding-top: 61px;
+    width: 232px;
+    height: 232px;
+    margin-top: 61px;
   }
 
   .about__text-container {
@@ -95,8 +100,9 @@
   }
 
   .about__photo {
-    max-width: 272px;
-    padding-top: 32px;
+    width: 272px;
+    height: 272px;
+    margin-top: 32px;
   }
 
   .about__text-container {

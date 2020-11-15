@@ -1,19 +1,25 @@
 import React from 'react';
 import './About.css';
-import photo from '../../images/image-03.png';
+import photoMax from '../../images/photo-about-1440.png';
+import photoMid from '../../images/photo-about-768.png';
+import photoMin from '../../images/photo-about-320.png';
 
 function About() {
 
   return (
     <section className="about">
-      <img className="about__photo" src={photo} alt="Фото"/>
+      <picture>
+        <source media="(min-width: 768px)" srcSet={photoMax}/>
+        <source media="(min-width: 425px)" srcSet={photoMid}/>
+        <img className="about__photo" src={photoMin} alt="Фото"/>
+      </picture>
       <div className="about__text-container">
         <h2 className="about__title">Об авторе</h2>
-        <p className="about__paragraf">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы
-          занимаетесь, какими технологиями разработки владеете.</p>
+        <p className="about__paragraf">Привет! Меня зовут Александр Прохоров. Я увлекаюсь веб-разработкой.</p>
         <p className="about__paragraf">
-          Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь
-          потенциальным заказчикам.</p>
+          Во время обучения в Яндекс.Практикум по специальности Веб-разработчик изучал HTML, верстку по БЭМ, JS и
+          MERN. Данный проект написан на Mongo, Express, React, Node.
+          </p>
       </div>
     </section>
   );
