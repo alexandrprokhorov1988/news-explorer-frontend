@@ -19,7 +19,9 @@ function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut }) {
           Грета, у вас 5 сохранённых статей
         </h2>
         <p className="saved-news-header__subtitle">
-          По ключевым словам: Природа, Тайга и 2-м другим
+          По ключевым словам: <span className="saved-news-header__span-accent">Природа</span>,
+          <span className="saved-news-header__span-accent"> Тайга</span> и
+          <span className="saved-news-header__span-accent"> 2-м другим</span>
         </p>
       </div>
     </header>

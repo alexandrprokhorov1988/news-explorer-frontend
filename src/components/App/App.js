@@ -16,12 +16,18 @@ function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(true);
+  // const [isOpenNav, setIsOpenNav] = React.useState(false);
 
   function handleEscClose(e) {
     if (e.key === 'Escape') {
       closeAllPopups();
     }
   }
+
+  // function handleNavToggle() {
+  //   closeAllPopups();
+  //   setIsOpenNav(!isOpenNav);
+  // }
 
   function handleRegisterPopupOpen() {
     closeAllPopups();
@@ -49,10 +55,15 @@ function App() {
           <Header
             loggedIn={loggedIn}
             onSignIn={handleLoginPopupOpen}
+            // onNavToggle={handleNavToggle}
+            // isOpenNav={isOpenNav}
+
             // userData={userData}
             // onSignOut={handleSignOut}
           />
-          <Main/>
+          <Main
+            loggedIn={loggedIn}
+          />
         </Route>
         <Route exact path="/saved-news">
           <SavedNewsHeader

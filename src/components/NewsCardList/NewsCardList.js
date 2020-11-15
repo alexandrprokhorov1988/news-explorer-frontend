@@ -7,7 +7,7 @@ import NotFoundResults from '../../components/NotFoundResults/NotFoundResults';
 import Preloader from '../../components/Preloader/Preloader';
 import NewsCard from '../../components/NewsCard/NewsCard';
 
-function NewsCardList() {
+function NewsCardList({loggedIn}) {
 
   return (
     <section className="news-card-list">
@@ -25,7 +25,7 @@ function NewsCardList() {
           '                система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.\n' +
           ''}
           isFaved={false}
-          loggedIn={false}
+          loggedIn={loggedIn}
         />
         <NewsCard
           link={img4}
@@ -46,7 +46,7 @@ function NewsCardList() {
           '           + \'из местных чудес природы.Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного\' +\n' +
           '           + \'из местных чудес природы.'}
           isFaved={true}
-          loggedIn={false}
+          loggedIn={loggedIn}
         />
         <NewsCard
           link={img7}
@@ -57,7 +57,7 @@ function NewsCardList() {
           source={'Риа'}
           text={'Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...'}
           isFaved={false}
-          loggedIn={true}
+          loggedIn={false}
         />
       </div>
       <button type="button" className="news-card-list__button-more">Показать еще</button>

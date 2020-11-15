@@ -2,7 +2,9 @@
   margin: 0 auto;
   box-sizing: border-box;
   display: grid;
+  /*grid-template-columns: repeat(2, auto);*/
   grid-template-columns: minmax(min-content, max-content) auto;
+
   grid-template-areas:
           "photo text";
   grid-gap: 56px;
@@ -13,12 +15,9 @@
 }
 
 .about__photo {
-  /*width: 100%;*/
+  width: 100%;
   object-fit: contain;
   max-width: 464px;
-  /*padding-top: 80px;*/
-  width: 464px;
-  height: 464px;
   border-radius: 100%;
   margin-top: 80px;
   grid-area: photo;
@@ -54,18 +53,21 @@
   color: #1A1B22;
   padding: 0;
   padding-top: 24px ;
+  width: 100%;
+  max-width: 600px;
 }
 
 @media screen and (max-width: 768px) {
   .about {
+   margin: 0 auto;
     grid-gap: 32px;
     padding-bottom: 61px;
     width: calc(100% - 10.4%);
+    padding-left: 0;
   }
 
   .about__photo {
-    width: 232px;
-    height: 232px;
+    max-width: 232px;
     margin-top: 61px;
   }
 
@@ -81,6 +83,7 @@
 
   .about__paragraf {
     padding-top: 16px ;
+    max-width: 424px;
   }
 }
 
@@ -100,12 +103,14 @@
   }
 
   .about__photo {
-    width: 272px;
-    height: 272px;
+    max-width: 272px;
     margin-top: 32px;
   }
 
   .about__text-container {
+    max-width: 100%;
+  }
+  .about__paragraf {
     max-width: 100%;
   }
 }

@@ -4,10 +4,16 @@ import logoWhite from '../../images/logout-white.svg';
 import logoBlack from '../../images/logout-black.svg';
 import {Link, useLocation} from 'react-router-dom';
 
-function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme }) {
+function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isLoginPopupOpen }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
-  
+
+  // React.useEffect(() => {
+  //   if (isLoginPopupOpen) {
+  //     setIsOpenNav(!isOpenNav);
+  //   }
+  // }, [isLoginPopupOpen]);
+
   function handleOpen() {
     setIsOpenNav(!isOpenNav);
   }
@@ -16,11 +22,8 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme }) {
     <div className={`navigation navigation_theme_${theme} ${isOpenNav ? `navigation_type_open-${theme}` : ''}`}>
       <div className="navigation__container">
         <Link className={`navigation__logo navigation__logo_theme_${theme}`} to="/">NewsExplorer</Link>
-        {!isOpenNav ?
-          <button onClick={handleOpen} className={`navigation__button navigation__button_type_close-${theme}`}/>
-          :
-          <button onClick={handleOpen} className={`navigation__button navigation__button_type_open-${theme}`}/>
-        }
+        <button onClick={handleOpen}
+                className={`navigation__button navigation__button_type_${isOpenNav ? 'open' : 'close'}-${theme}`}/>
       </div>
       <nav className={`nav nav_theme_${theme} ${isOpenNav ? 'nav_opened' : ''}`}>
         <ul className="nav__links">

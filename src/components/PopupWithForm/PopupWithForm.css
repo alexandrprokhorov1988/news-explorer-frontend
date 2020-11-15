@@ -185,7 +185,7 @@
   padding: 0;
 }
 
-.form__submit-button:hover{
+.form__submit-button:hover {
   background: #347EFF;
   box-shadow: 0 5px 15px rgba(14, 26, 57, 0.2);
 }
@@ -199,17 +199,24 @@
   user-select: none;
 }
 
-@media screen and (max-width: 575px) {
-  .popup__close-button{
-    right: 16px;
-    top: -56px;
+@media screen and (max-width: 768px) {
+  .popup__close-button {
+    display: none;
   }
 }
 
 @media screen and (max-width: 425px) {
-  .popup__container{
+  .popup__container {
     border-radius: 16px 16px 0 0;
     height: 100vh;
-    margin-top: 156px;
+    margin-top: 113px;
+  }
+
+  .popup__close-button {
+    display: block;
+    top: -35px;
+    width: 13px;
+    height: 13px;
+    right: 16px;
   }
 }

@@ -15,11 +15,11 @@ function About() {
       </picture>
       <div className="about__text-container">
         <h2 className="about__title">Об авторе</h2>
-        <p className="about__paragraf">Привет! Меня зовут Александр Прохоров. Я увлекаюсь веб-разработкой.</p>
+        <p className="about__paragraf">Привет! Меня зовут Александр Прохоров. Я занимаюсь веб-разработкой.</p>
         <p className="about__paragraf">
-          Во время обучения в Яндекс.Практикум по специальности Веб-разработчик изучал HTML, верстку по БЭМ, JS и
+          В Яндекс.Практикум по специальности Веб-разработчик изучал HTML, верстку по БЭМ, JS и
           MERN. Данный проект написан на Mongo, Express, React, Node.
-          </p>
+        </p>
       </div>
     </section>
   );

@@ -10,7 +10,8 @@ function NewsCard({ link, alt, category, date, title, source, text, isFaved, log
       {location.pathname === '/saved-news' ?
         <button type="button" className='news-card__button news-card__button_type_delete'/> :
         <button type="button"
-                className={`news-card__button news-card__button_type_add ${isFaved ? 'news-card__button_active' : ''}`}/>
+                className={`news-card__button news-card__button_type_add ${isFaved ? 'news-card__button_active' : ''}`}
+        />
       }
       {location.pathname === '/saved-news' ?
         <>

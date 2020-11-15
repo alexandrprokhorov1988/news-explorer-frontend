@@ -55,6 +55,10 @@
   transition: all ease .5s;
 }
 
+.saved-news-header__span-accent{
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   .saved-news-header {
     height: 270px;

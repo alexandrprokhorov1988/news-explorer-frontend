@@ -2,13 +2,15 @@ import React from 'react';
 import About from '../../components/About/About';
 import NewsCardList from '../../components/NewsCardList/NewsCardList';
 
-function Main() {
+function Main({loggedIn}) {
 
   return (
-    <>
-      <NewsCardList/>
+   <main className="main">
+      <NewsCardList
+        loggedIn={loggedIn}
+      />
       <About/>
-    </>
+   </main>
   );
 }
 

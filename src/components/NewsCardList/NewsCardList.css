@@ -4,6 +4,7 @@
   margin: 0 auto;
   max-width: 1232px;
   width: calc(100% - 14.4%);
+  padding-bottom: 22px;
 }
 
 .news-card-list__title {
