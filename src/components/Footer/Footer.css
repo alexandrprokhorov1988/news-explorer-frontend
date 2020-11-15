@@ -65,7 +65,8 @@
   background-repeat: no-repeat;
   background-position: 50%;
   cursor: pointer;
-  background-image: url(../../images/facebook.svg);
+  /*background-image: url(../../images/facebook.svg);*/
+  background-image: url(../../images/codewars-square.svg);
 }
 
 .footer__link_type_git {
@@ -98,7 +99,9 @@
   .footer__link_type_fb {
     width: 22px;
     height: 22px;
-    background-image: url(../../images/social_type_fb~ignore.svg);
+    /*background-image: url(../../images/social_type_fb~ignore.svg);*/
+    background-image: url(../../images/codewars-circle.svg);
+
   }
 }
 
@@ -135,7 +138,8 @@
   }
 
   .footer__link_type_fb {
-    background-image: url(../../images/facebook.svg);
+    /*background-image: url(../../images/facebook.svg);*/
+    background-image: url(../../images/codewars-square.svg);
   }
   .footer__copyright{
     padding-top: 38px;

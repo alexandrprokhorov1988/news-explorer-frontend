@@ -14,13 +14,12 @@ function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut }) {
         theme={'saved-news'}
       />
       <div className="saved-news-header__container">
-        <p className="saved-news-header__text">Сохранённые статьи
-        </p>
+        <p className="saved-news-header__text">Сохранённые статьи</p>
         <h2 className="saved-news-header__title">
-          {/*{`${userData ? userData.name : 'Грета'}, у вас ${titles ? titles.length : '5'} сохранённых статей`}*/}
+          Грета, у вас 5 сохранённых статей
         </h2>
         <p className="saved-news-header__subtitle">
-          {/*{`По ключевым словам: ${titles[0] || 'Природа'}, ${titles[1] || 'Тайга'} и 2-м другим`}*/}
+          По ключевым словам: Природа, Тайга и 2-м другим
         </p>
       </div>
     </header>

@@ -26,9 +26,9 @@
   padding-bottom: 26px;
 }
 
-.navigation__container_theme_saved-news {
-  color: #1A1B22;
-}
+/*.navigation__container_theme_saved-news {*/
+/*color: #1A1B22;*/
+/*}*/
 
 .navigation_theme_main {
   background: rgba(196, 196, 196, 0.01);
@@ -238,6 +238,14 @@
 
   .nav__link_theme-saved-news {
     border: none;
+  }
+
+  .nav__link_active-main {
+    border-bottom: none;
+  }
+
+  .nav__link_active-saved-news {
+    border-bottom: none;
   }
 
   .nav__list {

@@ -7,8 +7,7 @@ import {Link, useLocation} from 'react-router-dom';
 function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
-
-
+  
   function handleOpen() {
     setIsOpenNav(!isOpenNav);
   }
@@ -16,7 +15,7 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme }) {
   return (
     <div className={`navigation navigation_theme_${theme} ${isOpenNav ? `navigation_type_open-${theme}` : ''}`}>
       <div className="navigation__container">
-        <a className={`navigation__logo navigation__logo_theme_${theme}`} href="/">NewsExplorer</a>
+        <Link className={`navigation__logo navigation__logo_theme_${theme}`} to="/">NewsExplorer</Link>
         {!isOpenNav ?
           <button onClick={handleOpen} className={`navigation__button navigation__button_type_close-${theme}`}/>
           :
