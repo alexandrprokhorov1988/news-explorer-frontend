@@ -16,18 +16,22 @@ function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  // const [isOpenNav, setIsOpenNav] = React.useState(false);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
+      setIsPopupOpen(true);
+    } else {
+      setIsPopupOpen(false);
+    }
+  }, [isLoginPopupOpen, isConfirmPopupOpen, isRegisterPopupOpen]);
+
 
   function handleEscClose(e) {
     if (e.key === 'Escape') {
       closeAllPopups();
     }
   }
-
-  // function handleNavToggle() {
-  //   closeAllPopups();
-  //   setIsOpenNav(!isOpenNav);
-  // }
 
   function handleRegisterPopupOpen() {
     closeAllPopups();
@@ -55,11 +59,9 @@ function App() {
           <Header
             loggedIn={loggedIn}
             onSignIn={handleLoginPopupOpen}
-            // onNavToggle={handleNavToggle}
-            // isOpenNav={isOpenNav}
-            onClose={closeAllPopups}
             // userData={userData}
             // onSignOut={handleSignOut}
+            isPopupOpen={isPopupOpen}
           />
           <Main
             loggedIn={loggedIn}
@@ -68,6 +70,8 @@ function App() {
         <Route exact path="/saved-news">
           <SavedNewsHeader
             loggedIn={loggedIn}
+            onSignIn={handleLoginPopupOpen}
+            isPopupOpen={isPopupOpen}
             // onSignOut={handleSignOut}
           />
           <SavedNews/>

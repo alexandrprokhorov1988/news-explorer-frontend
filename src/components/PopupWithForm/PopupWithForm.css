@@ -206,18 +206,21 @@
 }
 
 @media screen and (max-width: 425px) {
+  .popup{
+    background: transparent;
+    z-index: 10;
+  }
   .popup__container {
     border-radius: 16px 16px 0 0;
     height: 100vh;
-    margin-top: 113px;
+    margin-top: 112px;
   }
 
   .popup__close-button {
-    /*display: block;*/
-    display: none;
+    display: block;
     top: -35px;
     width: 13px;
     height: 13px;
-    right: 16px;
+    right: 5%;
   }
 }
