@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "./static/css/main.9633ad81.chunk.css",
+    "main.js": "./static/js/main.0e1149eb.chunk.js",
+    "main.js.map": "./static/js/main.0e1149eb.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.9b5feab5.js",
+    "runtime-main.js.map": "./static/js/runtime-main.9b5feab5.js.map",
+    "static/js/2.e7aab6bc.chunk.js": "./static/js/2.e7aab6bc.chunk.js",
+    "static/js/2.e7aab6bc.chunk.js.map": "./static/js/2.e7aab6bc.chunk.js.map",
+    "static/js/3.4c7204e4.chunk.js": "./static/js/3.4c7204e4.chunk.js",
+    "static/js/3.4c7204e4.chunk.js.map": "./static/js/3.4c7204e4.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.9633ad81.chunk.css.map": "./static/css/main.9633ad81.chunk.css.map",
+    "static/js/2.e7aab6bc.chunk.js.LICENSE.txt": "./static/js/2.e7aab6bc.chunk.js.LICENSE.txt",
+    "static/media/NewsCard.css": "./static/media/button-delete-icon.9771d4ad.svg",
+    "static/media/Navigation.css": "./static/media/menu.576727e9.svg",
+    "static/media/Footer.css": "./static/media/github.b4c0eea3.svg",
+    "static/media/Header.css": "./static/media/georgia-de-lotz--UsJoNxLaNo-unsplash.76d0422f.png",
+    "static/media/image_01.11a4bd0e.png": "./static/media/image_01.11a4bd0e.png",
+    "static/media/image_04.b5b9bc75.png": "./static/media/image_04.b5b9bc75.png",
+    "static/media/image_05.aee77107.png": "./static/media/image_05.aee77107.png",
+    "static/media/image_06.1240f6e9.png": "./static/media/image_06.1240f6e9.png",
+    "static/media/image_07.efbfa8a5.png": "./static/media/image_07.efbfa8a5.png",
+    "static/media/image_08.d2885c3c.png": "./static/media/image_08.d2885c3c.png",
+    "static/media/index.css": "./static/media/sourcesanspro-regular.95f3ed41.woff",
+    "static/media/logout-black.01943824.svg": "./static/media/logout-black.01943824.svg",
+    "static/media/logout-white.1a7a3ab0.svg": "./static/media/logout-white.1a7a3ab0.svg",
+    "static/media/NotFoundResults.css": "./static/media/not-found_v1.4aebeb9a.svg",
+    "static/media/photo-about-1440.ed079421.png": "./static/media/photo-about-1440.ed079421.png",
+    "static/media/photo-about-320.0c36373a.png": "./static/media/photo-about-320.0c36373a.png",
+    "static/media/photo-about-768.eb3160b7.png": "./static/media/photo-about-768.eb3160b7.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9b5feab5.js",
+    "static/js/2.e7aab6bc.chunk.js",
+    "static/css/main.9633ad81.chunk.css",
+    "static/js/main.0e1149eb.chunk.js"
+  ]
+}
