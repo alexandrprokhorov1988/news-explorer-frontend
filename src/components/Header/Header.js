@@ -3,7 +3,7 @@ import './Header.css';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Navigation from '../../components/Navigation/Navigation';
 
-function Header({loggedIn, userData, onSignIn, onSignOut, isLoginPopupOpen, onNavToggle,isOpenNav}) {
+function Header({ loggedIn, userData, onSignIn, onSignOut, isLoginPopupOpen, onNavToggle, isOpenNav, onClose }) {
 
   return (
     <header className="header">
@@ -13,9 +13,10 @@ function Header({loggedIn, userData, onSignIn, onSignOut, isLoginPopupOpen, onNa
         onSignOut={onSignOut}
         userData={userData}
         theme={'main'}
-        isLoginPopupOpen={isLoginPopupOpen}
-        // onNavToggle={onNavToggle}
-        // isOpenNav={isOpenNav}
+        // isLoginPopupOpen={isLoginPopupOpen}
+        //         // onNavToggle={onNavToggle}
+        //         // isOpenNav={isOpenNav}
+                onClose={onClose}
       />
       <div className="header__container">
         <h1 className="header__title">Что творится в мире?</h1>

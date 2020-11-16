@@ -15,7 +15,7 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   // const [isOpenNav, setIsOpenNav] = React.useState(false);
 
   function handleEscClose(e) {
@@ -57,7 +57,7 @@ function App() {
             onSignIn={handleLoginPopupOpen}
             // onNavToggle={handleNavToggle}
             // isOpenNav={isOpenNav}
-
+            onClose={closeAllPopups}
             // userData={userData}
             // onSignOut={handleSignOut}
           />

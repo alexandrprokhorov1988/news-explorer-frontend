@@ -213,7 +213,8 @@
   }
 
   .popup__close-button {
-    display: block;
+    /*display: block;*/
+    display: none;
     top: -35px;
     width: 13px;
     height: 13px;

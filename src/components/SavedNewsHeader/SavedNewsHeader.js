@@ -2,7 +2,7 @@ import React from 'react';
 import './SavedNewsHeader.css';
 import Navigation from '../../components/Navigation/Navigation';
 
-function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut }) {
+function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut, isLoginPopupOpen, onNavToggle, isOpenNav, onClose }) {
 
   return (
     <header className="saved-news-header">
@@ -12,6 +12,10 @@ function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut }) {
         onSignOut={onSignOut}
         userData={userData}
         theme={'saved-news'}
+        // isLoginPopupOpen={isLoginPopupOpen}
+        // onNavToggle={onNavToggle}
+        // isOpenNav={isOpenNav}
+        // onClose={onClose}
       />
       <div className="saved-news-header__container">
         <p className="saved-news-header__text">Сохранённые статьи</p>

@@ -4,7 +4,7 @@ import logoWhite from '../../images/logout-white.svg';
 import logoBlack from '../../images/logout-black.svg';
 import {Link, useLocation} from 'react-router-dom';
 
-function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isLoginPopupOpen }) {
+function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isLoginPopupOpen, onClose }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
 
