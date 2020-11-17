@@ -26,11 +26,16 @@ function App() {
     }
   }, [isLoginPopupOpen, isConfirmPopupOpen, isRegisterPopupOpen]);
 
-
   function handleEscClose(e) {
     if (e.key === 'Escape') {
       closeAllPopups();
     }
+  }
+
+  function handleConfirmPopupOpen() {
+    closeAllPopups();
+    setConfirmPopupOpen(true);
+    document.addEventListener('keydown', handleEscClose);
   }
 
   function handleRegisterPopupOpen() {

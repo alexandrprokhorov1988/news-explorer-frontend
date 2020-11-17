@@ -12,7 +12,6 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopup
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('dasd')
     if (!values.email || !values.password || !values.name) {
       return;
     }
