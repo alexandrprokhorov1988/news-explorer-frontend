@@ -5,12 +5,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    'javascript/main': './src/index.js',
-    'javascript/articles': './src/articles/index.js',
+    main: './src/index.js',
+    articles: './src/articles/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: 'javascript/[name].[contenthash].js',
     publicPath: ''
   },
   mode: 'development',
@@ -37,9 +37,9 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: { importLoaders: 1 },
           },
-          ],
+          'postcss-loader'],
       },
       {
         test: /\.js$/,
@@ -51,10 +51,15 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      'articles/index': './public/articles/index.html',
-      favicon: './public/favicon.ico'
+      favicon: './public/favicon.ico',
     }),
-    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/articles/index.html',
+      filename: 'articles/index.html',
+    }),
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css',
+    }),
   ],
 };
