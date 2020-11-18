@@ -1,4 +1,5 @@
-# Проект 14: Место React auth
+# news-explorer-frontend
+Репозиторий фронтенда проекта News Explorer, включающий авторизацию, регистрацию пользователей и операции с карточками новостей.  
 
 ### Обзор
 * Описание
@@ -8,40 +9,23 @@
 * Планы по доработке
 
 #### Описание
-* [Ссылка на макет в Figma](https://www.figma.com/file/fUESH7icdnexdbpwgYsUcc/Sprint-14-(RU)?node-id=0%3A1)
+* [Ссылка на макет в Figma](https://www.figma.com/file/Dhl21eRzzbFMBe0DU9SglF/Diploma-WEB-v2.0-(for-students)?node-id=1%3A243)
 
 #### Инструкция
-* [Ссылка на проект](https://alexandrprokhorov1988.github.io/react-mesto-auth/)
+* [Ссылка на проект](https://alexandrprokhorov1988.github.io/news-explorer-frontend/)
 
 #### Технологии
 * Спецификации HTML, CSS.
 * Язык Javascript.
 * Страница разработана по методологии компонентного подхода БЭМ. 
-* **Nested БЭМ** структура.  
 * Адаптивность от 320
 * Grid
 * Flex 
 * Live валидация форм
-* Добавление и редактирование элементов
-* Popup
-* Введены классы валидации и создания карточек на странице
-* ООП
-* Webpack
-* Fetch
-* Promise
-* React
+* React(CRA)
 
 #### Примечания
-  Для сборки проекта командой "npm run build" в package.json.
- 
-  Linux 
-  ```sh
-  "rm -rf dist && webpack"
-  ```
-  Windows 
-  ```sh
-  "rd /s /q dist && webpack"
-```
+  
 
 #### Планы по доработке
-  Подключить серверную часть
+  Написать логику

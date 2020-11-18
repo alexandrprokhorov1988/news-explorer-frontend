@@ -25,6 +25,7 @@
   grid-gap: 16px;
   padding-top: 64px;
   justify-items: center;
+  background: #F5F6F7;
 }
 
 .news-card-list__button-more {
