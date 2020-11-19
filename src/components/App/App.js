@@ -12,6 +12,7 @@ import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isFoundArticles, setIsFoundArticles] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
@@ -70,6 +71,8 @@ function App() {
           />
           <Main
             loggedIn={loggedIn}
+            isLoading={isLoading}
+            isFoundArticles={isFoundArticles}
           />
         </Route>
         <Route path="/saved-news">

@@ -7,7 +7,7 @@ import NotFoundResults from '../../components/NotFoundResults/NotFoundResults';
 import Preloader from '../../components/Preloader/Preloader';
 import NewsCard from '../../components/NewsCard/NewsCard';
 
-function NewsCardList({loggedIn}) {
+function NewsCardList({ loggedIn, isLoading, isFoundArticles }) {
 
   return (
     <section className="news-card-list">
@@ -35,7 +35,7 @@ function NewsCardList({loggedIn}) {
           title={'Лесные огоньки: история одной фотографии'}
           source={'Медуза'}
           text={'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного' +
-           + 'из местных чудес природы.Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного\' +\n' +
+          +'из местных чудес природы.Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного\' +\n' +
           '           + \'из местных чудес природы.Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного\' +\n' +
           '           + \'из местных чудес природы.Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного\' +\n' +
           '           + \'из местных чудес природы.Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного\' +\n' +
@@ -61,8 +61,8 @@ function NewsCardList({loggedIn}) {
         />
       </div>
       <button type="button" className="news-card-list__button-more">Показать еще</button>
-      <Preloader/>
-      <NotFoundResults/>
+      {isLoading && <Preloader/>}
+      {isFoundArticles && <NotFoundResults/>}
     </section>
   );
 }

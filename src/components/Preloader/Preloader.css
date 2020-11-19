@@ -2,13 +2,9 @@
   margin: 0;
   flex-direction: column;
   align-items: center;
-  display: none;
+  display: flex;
   height: 282px;
   justify-content: center;
-}
-
-.preloader_active {
-  display: flex;
 }
 
 .preloader__img {
