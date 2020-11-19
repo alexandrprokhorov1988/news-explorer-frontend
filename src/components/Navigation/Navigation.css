@@ -26,10 +26,6 @@
   padding-bottom: 26px;
 }
 
-/*.navigation__container_theme_saved-news {*/
-/*color: #1A1B22;*/
-/*}*/
-
 .navigation_theme_main {
   background: rgba(196, 196, 196, 0.01);
 }
@@ -40,11 +36,11 @@
 
 .navigation__logo {
   text-decoration: none;
+  font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
-  font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
 }
 
 .navigation__logo_theme_main {
@@ -135,6 +131,7 @@
 }
 
 .nav__button {
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -142,7 +139,7 @@
   background: transparent;
   border-radius: 100px;
   height: 48px;
-  padding: 0 12px;
+  padding: 0 14px;
   cursor: pointer;
   outline: none;
   display: flex;
@@ -172,13 +169,30 @@
     padding-left: 40px;
     padding-right: 40px;
   }
-
+  .navigation__container{
+    padding-top: 23px;
+    padding-bottom: 19px;
+  }
+  .nav__button{
+    height: 40px;
+    font-size: 16px;
+  }
+  .nav__button_theme_saved-news {
+    padding: 0 10px;
+  }
   .nav__list:not(:last-of-type) {
-    padding-right: 16px
+    padding-right: 22px
   }
 
   .nav__link {
     font-size: 16px;
+  }
+  .nav__link_theme_main {
+    padding-bottom: 22px;
+  }
+
+  .nav__link_theme_saved-news {
+    padding-bottom: 22px;
   }
 }
 
@@ -257,5 +271,12 @@
     height: 56px;
     width: 100%;
     padding: 0 74px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navigation__logo {
+    font-size: 16px;
+    line-height: 24px;
   }
 }

@@ -2,12 +2,10 @@
   margin: 0 auto;
   box-sizing: border-box;
   display: grid;
-  /*grid-template-columns: repeat(2, auto);*/
   grid-template-columns: minmax(min-content, max-content) auto;
-
   grid-template-areas:
           "photo text";
-  grid-gap: 56px;
+  grid-gap: 64px;
   padding-bottom: 80px;
   transition: all ease 0.5s;
   max-width: 1232px;

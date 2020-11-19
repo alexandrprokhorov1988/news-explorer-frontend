@@ -47,11 +47,11 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    min-height: 400px;
-    max-height: 448px;
     padding-left: 21.2%;
     padding-right: 20.3%;
     align-items: start;
+    height: 400px;
+    background-image: url(../../images/georgia-de-lotz--UsJoNxLaNo-unsplash-768.png);
   }
 
   .header__title {

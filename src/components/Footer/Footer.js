@@ -15,18 +15,30 @@ function Footer() {
             <Link to="/" className="footer__link">Главная</Link>
           </li>
           <li className="footer__list">
-            <a href="https://praktikum.yandex.ru" className="footer__link">Яндекс.Практикум</a>
+            <a href="https://praktikum.yandex.ru"
+               className="footer__link"
+               target="_blank"
+               rel="noreferrer">
+              Яндекс.Практикум
+            </a>
           </li>
         </ul>
       </nav>
       <nav className="footer__navigation footer__navigation_type_icon">
         <ul className="footer__links">
           <li className="footer__list">
-            <a href="https://github.com/alexandrprokhorov1988" className="footer__link footer__link_type_git"> </a>
+            <a href="https://github.com/alexandrprokhorov1988"
+               className="footer__link footer__link_type_git"
+               target="_blank"
+               rel="noreferrer">
+            </a>
           </li>
           <li className="footer__list">
             <a href="https://www.codewars.com/users/Alexandr%20Prokhorov"
-               className="footer__link footer__link_type_fb"> </a>
+               className="footer__link footer__link_type_fb"
+               target="_blank"
+               rel="noreferrer">
+            </a>
           </li>
         </ul>
       </nav>

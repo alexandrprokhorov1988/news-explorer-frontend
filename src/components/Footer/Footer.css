@@ -5,29 +5,32 @@
   display: grid;
   grid-template-columns: auto repeat(2, minmax(min-content, max-content));
   grid-template-areas: "copyright text icon";
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 26px;
 }
 
 .footer__copyright {
-  font-weight: 400;
+  font-weight: normal;
   font-size: 16px;
   line-height: 22px;
   padding: 0;
   margin: 0;
   color: #B6BCBF;
-  padding-top: 32px;
-  padding-bottom: 26px;
+  /*padding-top: 32px;*/
+  /*padding-bottom: 26px;*/
   grid-area: copyright;
 }
 
 .footer__navigation {
-  padding-top: 30px;
-  padding-bottom: 28px;
+  /*padding-top: 30px;*/
+  /*padding-bottom: 28px;*/
 }
 
 .footer__navigation_type_text {
   grid-area: text;
   justify-self: end;
-  padding-right: 40px;
+  padding-right: 64px;
   transition: all ease 0.5s;
 }
 
@@ -47,7 +50,7 @@
 }
 
 .footer__list:not(:last-of-type) {
-  padding-right: 25px;
+  padding-right: 32px;
 }
 
 .footer__link {
@@ -86,22 +89,22 @@
     padding-left: 40px;
     max-width: 768px;
     width: calc(100% - 10.4%);
+    padding-top: 18px;
+    padding-bottom: 18px;
   }
 
   .footer__navigation_type_text {
-    padding-right: 30px;
+    padding-right: 34px;
   }
 
   .footer__list:not(:last-of-type) {
-    padding-right: 20px;
+    padding-right: 28px;
   }
 
   .footer__link_type_fb {
     width: 22px;
     height: 22px;
-    /*background-image: url(../../images/social_type_fb~ignore.svg);*/
     background-image: url(../../images/codewars-circle.svg);
-
   }
 }
 

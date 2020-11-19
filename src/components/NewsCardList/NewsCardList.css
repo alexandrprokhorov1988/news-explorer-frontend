@@ -4,7 +4,7 @@
   margin: 0 auto;
   max-width: 1232px;
   width: calc(100% - 14.4%);
-  padding-bottom: 22px;
+  padding-bottom: 80px;
 }
 
 .news-card-list__title {
@@ -40,6 +40,8 @@
   box-sizing: border-box;
   transition: all ease 0.5s;
   border: none;
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+  font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
@@ -55,6 +57,7 @@
   .news-card-list {
     max-width: 688px;
     width: calc(100% - 10.4%);
+    padding-bottom: 50px;
   }
 
   .news-card-list__title {
@@ -67,6 +70,12 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 8px;
     padding-top: 32px;
+  }
+
+  .news-card-list__button-more {
+    margin-top: 37px;
+    max-width: 240px;
+    height: 40px;
   }
 }
 

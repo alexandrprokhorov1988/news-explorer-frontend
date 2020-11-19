@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Diplom",
   "private": true,
-  "homepage": "https://alexandrprokhorov1988.github.io/news-explorer-frontend",
+  "homepage": "./",
   "author": "Alexandr Prokhorov",
   "dependencies": {
     "@testing-library/jest-dom": "5.11.5",

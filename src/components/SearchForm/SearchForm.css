@@ -76,6 +76,7 @@
 
   .search-form__submit-button {
     height: 56px;
+    max-width: 160px;
   }
 }
 
