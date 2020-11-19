@@ -83,7 +83,7 @@
   background-image: url(../../images/github.svg);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .footer {
     padding-right: 41px;
     padding-left: 40px;
@@ -112,21 +112,16 @@
   .footer {
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
-    grid-template-areas:
-            "text icon"
-            "copyright copyright ";
+    grid-template-areas: "text icon" "copyright copyright ";
     padding-left: 5%;
     padding-right: 5%;
     justify-content: space-between;
     align-content: space-around;
   }
 
-  .footer__navigation_type_text{
+  .footer__navigation_type_text {
     justify-self: auto;
     padding-bottom: 0;
-  }
-  .footer__navigation_type_icon{
-    padding-top: 22px;
   }
 
   .footer__links_type_text {
@@ -141,10 +136,23 @@
   }
 
   .footer__link_type_fb {
-    /*background-image: url(../../images/facebook.svg);*/
     background-image: url(../../images/codewars-square.svg);
   }
-  .footer__copyright{
+
+  .footer__copyright {
     padding-top: 38px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .footer {
+    padding-top: 20px;
+  }
+  .footer__copyright {
+    padding-top: 28px;
+  }
+  .footer__navigation_type_icon{
+    padding-top: 0;
+    align-self: baseline;
   }
 }

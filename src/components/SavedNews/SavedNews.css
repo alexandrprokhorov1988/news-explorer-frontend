@@ -32,6 +32,7 @@
   .saved-news {
     max-width: 288px;
     width: calc(100% - 10%);
+    padding-bottom: 14px;
   }
 
   .saved-news__container{
