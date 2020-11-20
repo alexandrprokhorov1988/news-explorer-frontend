@@ -27,18 +27,18 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopup
       onSubmit={handleSubmit}
       onButtonClick={onButtonLoginClick}
       isRegisterPopupOpen={isRegisterPopupOpen}>
-      <label htmlFor="email" className="form__input-label">Email</label>
+      <label htmlFor="register-email" className="form__input-label">Email</label>
       <input className="form__input"
              type="email"
              name="email"
              required
              placeholder="Введите свой email"
-             id="email"
+             id="register-email"
              value={values.email || ''}
              onChange={handleChange}
       />
       <span className={`form__error ${isValid ? 'form__error_hide' : ''}`}>{errors.email || ''}</span>
-      <label htmlFor="password" className="form__input-label">Пароль</label>
+      <label htmlFor="register-password" className="form__input-label">Пароль</label>
       <input className="form__input"
              type="password"
              name="password"
@@ -46,7 +46,7 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopup
              minLength="2"
              maxLength="200"
              placeholder="Введите пароль"
-             id="password"
+             id="register-password"
              value={values.password || ''}
              onChange={handleChange}
       />

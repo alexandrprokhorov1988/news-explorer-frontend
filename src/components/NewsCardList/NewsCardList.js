@@ -11,7 +11,7 @@ function NewsCardList({ loggedIn, isLoading, isFoundArticles }) {
 
   return (
     <section className="news-card-list">
-      <h1 className="news-card-list__title">Результаты поиска</h1>
+      <h2 className="news-card-list__title">Результаты поиска</h2>
       <div className="news-card-list__container">
         <NewsCard
           link={img8}
