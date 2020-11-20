@@ -8,6 +8,7 @@
   background: #FFFFFF;
   transition: all ease 0.5s;
   align-items: center;
+  max-width: 400px;
 }
 
 .news-card:hover {
@@ -163,6 +164,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .news-card {
+    max-height: 420px;
+    max-width: 224px;
+  }
   .news-card__button{
     top: 8px;
     right: 8px;
@@ -175,10 +180,6 @@
   .news-card__category {
     left: 8px;
     top: 8px;
-  }
-
-  .news-card {
-    max-height: 420px;
   }
 
   .news-card__img {
@@ -208,9 +209,10 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 455px) {
   .news-card {
     max-height: 440px;
+    max-width: 288px;
   }
 
   .news-card__category {

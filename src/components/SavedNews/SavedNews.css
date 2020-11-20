@@ -9,11 +9,12 @@
 
 .saved-news__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   grid-gap: 16px;
   padding-top: 62px;
   justify-items: center;
   background: #F5F6F7;
+  justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -22,7 +23,7 @@
     padding-bottom: 36px;
   }
   .saved-news__container {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
     grid-gap: 8px;
     padding-top: 32px;
   }
