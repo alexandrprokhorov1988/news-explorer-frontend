@@ -9,6 +9,7 @@ import SavedNewsHeader from '../../components/SavedNewsHeader/SavedNewsHeader';
 import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
+import mainApi from "../../utils/MainApi";
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -16,8 +17,10 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [loginErrorMessage, setLoginErrorMessage] = React.useState(null);
+  const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -58,6 +61,23 @@ function App() {
     document.removeEventListener('keydown', handleEscClose);
   }
 
+  function handleRegister({ email, password, name }) {
+    setIsLoading(true);
+    return mainApi.register(email, password, name)
+      .then(() => {
+          handleConfirmPopupOpen();
+        setRegisterErrorMessage(null);
+      })
+      .catch((err) => {
+        err.then((msg) => {
+          setRegisterErrorMessage(msg.message);
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
   return (
     <div className="page">
       <Switch>
@@ -89,8 +109,9 @@ function App() {
       <RegisterPopup
         isOpen={isRegisterPopupOpen}
         onClose={closeAllPopups}
-        // onRegister={handleRegister}
+        onRegister={handleRegister}
         isLoading={isLoading}
+        registerErrorMessage={registerErrorMessage}
         onButtonLoginClick={handleLoginPopupOpen}
         isRegisterPopupOpen={isRegisterPopupOpen}
       />

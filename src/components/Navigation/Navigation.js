@@ -43,7 +43,7 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpe
               </li>
               <li className="nav__list">
                 <button onClick={onSignOut} className={`nav__button nav__button_theme_${theme}`}>
-                  {userData ? userData.name : 'Грета'}
+                  {userData ? userData.name : ''}
                   <img className="nav__img"
                        src={theme === 'main' ? logoWhite : logoBlack}
                        alt="Выход"/>

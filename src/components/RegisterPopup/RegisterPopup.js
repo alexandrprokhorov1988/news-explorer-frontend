@@ -2,9 +2,16 @@ import React from 'react';
 import PopupWithForm from '../../components/PopupWithForm/PopupWithForm';
 import {useFormValidation} from '../../hooks/useFormValidation';
 
-function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpen, onButtonLoginClick }) {
+function RegisterPopup(
+  { isOpen,
+    onClose,
+    onRegister,
+    isLoading,
+    isRegisterPopupOpen,
+    onButtonLoginClick,
+    registerErrorMessage
+  }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormValidation();
-  const [requestMsg, setRequestMsg] = React.useState(null);
 
   React.useEffect(() => {
     resetForm();
@@ -15,8 +22,7 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopup
     if (!values.email || !values.password || !values.name) {
       return;
     }
-    //setRequestMsg
-    //onRegister(values);
+    onRegister(values);
   }
 
   return (
@@ -66,7 +72,7 @@ function RegisterPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopup
       />
       <span className={`form__error ${isValid ? 'form__error_hide' : ''}`}>{errors.name || ''}</span>
       <span
-        className={`form__error form__error_type_server-msg ${isValid ? 'form__error_hide' : ''}`}>{requestMsg || ''}</span>
+        className={`form__error form__error_type_server-msg ${!registerErrorMessage ? 'form__error_hide' : ''}`}>{registerErrorMessage || ''}</span>
       <input className={`form__submit-button ${!isValid ? 'form__submit-button_inactive' : '' }`}
              type="submit"
              name="submit"
