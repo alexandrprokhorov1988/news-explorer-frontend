@@ -10,8 +10,10 @@ import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
 import mainApi from "../../utils/MainApi";
+import {SERVER_ERR} from "../../utils/constants";
 
 function App() {
+  const history = useHistory();
   const [isLoading, setIsLoading] = React.useState(false);
   const [isFoundArticles, setIsFoundArticles] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
@@ -21,6 +23,7 @@ function App() {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [loginErrorMessage, setLoginErrorMessage] = React.useState(null);
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
+  const [userData, setUserData] = React.useState(null);
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -30,51 +33,101 @@ function App() {
     }
   }, [isLoginPopupOpen, isConfirmPopupOpen, isRegisterPopupOpen]);
 
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
+
   function handleEscClose(e) {
     if (e.key === 'Escape') {
       closeAllPopups();
     }
   }
-
   function handleConfirmPopupOpen() {
     closeAllPopups();
     setConfirmPopupOpen(true);
     document.addEventListener('keydown', handleEscClose);
   }
-
   function handleRegisterPopupOpen() {
     closeAllPopups();
     setRegisterPopupOpen(true);
     document.addEventListener('keydown', handleEscClose);
   }
-
   function handleLoginPopupOpen() {
     closeAllPopups();
     setLoginPopupOpen(true);
     document.addEventListener('keydown', handleEscClose);
   }
-
   function closeAllPopups() {
     setRegisterPopupOpen(false);
     setLoginPopupOpen(false);
     setConfirmPopupOpen(false);
     document.removeEventListener('keydown', handleEscClose);
   }
-
   function handleRegister({ email, password, name }) {
     setIsLoading(true);
     return mainApi.register(email, password, name)
       .then(() => {
-          handleConfirmPopupOpen();
+        handleConfirmPopupOpen();
         setRegisterErrorMessage(null);
       })
       .catch((err) => {
-        err.then((msg) => {
-          setRegisterErrorMessage(msg.message);
-        });
+        if(err.toString() === 'TypeError: Failed to fetch'){
+          setRegisterErrorMessage(SERVER_ERR);
+        } else {
+          err.then((msg) => {
+            setRegisterErrorMessage(msg.message || SERVER_ERR);
+          });
+        }
       })
       .finally(() => {
         setIsLoading(false);
+      })
+  }
+  function tokenCheck() {
+    mainApi.getUserInfo()
+      .then((res)=> {
+        if(res){
+          setUserData({
+            id: res._id,
+            name: res.name,
+          });
+          setLoginErrorMessage(null);
+          setLoggedIn(true);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  function handleLogin({email, password}) {
+    setIsLoading(true);
+    return mainApi.authorize(email, password)
+      .then(()=>{
+        setLoginErrorMessage(null);
+        tokenCheck();
+        closeAllPopups();
+      })
+      .catch((err) => {
+        if(err.toString() === 'TypeError: Failed to fetch'){
+          setLoginErrorMessage(SERVER_ERR);
+        } else {
+          err.then((msg) => {
+            setLoginErrorMessage(msg.message || SERVER_ERR);
+          });
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+  function handleSignOut() {
+    return mainApi.signOut()
+      .then(() => {
+        setLoggedIn(false);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
@@ -85,8 +138,8 @@ function App() {
           <Header
             loggedIn={loggedIn}
             onSignIn={handleLoginPopupOpen}
-            // userData={userData}
-            // onSignOut={handleSignOut}
+            userData={userData}
+            onSignOut={handleSignOut}
             isPopupOpen={isPopupOpen}
           />
           <Main
@@ -99,8 +152,9 @@ function App() {
           <SavedNewsHeader
             loggedIn={loggedIn}
             onSignIn={handleLoginPopupOpen}
+            userData={userData}
             isPopupOpen={isPopupOpen}
-            // onSignOut={handleSignOut}
+            onSignOut={handleSignOut}
           />
           <SavedNews/>
         </Route>
@@ -118,8 +172,9 @@ function App() {
       <LoginPopup
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}
-        // onLogin={handleLogin}
+        onLogin={handleLogin}
         isLoading={isLoading}
+        loginErrorMessage={loginErrorMessage}
         onButtonRegisterClick={handleRegisterPopupOpen}
         isRegisterPopupOpen={isRegisterPopupOpen}
       />

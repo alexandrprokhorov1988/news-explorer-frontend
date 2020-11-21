@@ -15,14 +15,60 @@ class MainApi {
       body: JSON.stringify({ email, password, name })
     })
       .then((res) => {
-          if (res.status === 200) {
-            return res.json();
-          }
-          return Promise.reject(res.json());
+        if (res.status === 200) {
+          return res.json();
         }
-      )
+        return Promise.reject(res.json());
+      })
   }
 
+  authorize(email, password) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({ email, password })
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res.json());
+      })
+  }
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject('Ошибка токена');
+      })
+  }
+
+  signOut() {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'POST',
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return;
+        }
+        return Promise.reject('Ошибка сервера');
+      })
+  }
 }
 
 const mainApi = new MainApi({

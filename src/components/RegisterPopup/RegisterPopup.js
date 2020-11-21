@@ -23,6 +23,7 @@ function RegisterPopup(
       return;
     }
     onRegister(values);
+    resetForm();
   }
 
   return (
@@ -71,8 +72,10 @@ function RegisterPopup(
              onChange={handleChange}
       />
       <span className={`form__error ${isValid ? 'form__error_hide' : ''}`}>{errors.name || ''}</span>
+      {isRegisterPopupOpen &&
       <span
         className={`form__error form__error_type_server-msg ${!registerErrorMessage ? 'form__error_hide' : ''}`}>{registerErrorMessage || ''}</span>
+      }
       <input className={`form__submit-button ${!isValid ? 'form__submit-button_inactive' : '' }`}
              type="submit"
              name="submit"

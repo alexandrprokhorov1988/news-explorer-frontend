@@ -17,7 +17,7 @@ function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut, isPo
       <div className="saved-news-header__container">
         <p className="saved-news-header__text">Сохранённые статьи</p>
         <h2 className="saved-news-header__title">
-          Грета, у вас 5 сохранённых статей
+          {`${userData.name}, у вас 5 сохранённых статей`}
         </h2>
         <p className="saved-news-header__subtitle">
           По ключевым словам: <span className="saved-news-header__span-accent">Природа</span>,
