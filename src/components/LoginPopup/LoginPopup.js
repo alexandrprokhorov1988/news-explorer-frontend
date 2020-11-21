@@ -8,7 +8,6 @@ function LoginPopup(
     onClose,
     onLogin,
     isLoading,
-    isRegisterPopupOpen,
     onButtonRegisterClick,
     loginErrorMessage
   }) {
@@ -34,7 +33,8 @@ function LoginPopup(
       onClose={onClose}
       onSubmit={handleSubmit}
       onButtonClick={onButtonRegisterClick}
-      isRegisterPopupOpen={isRegisterPopupOpen}>
+      linkTo={'login'}
+    >
       <label htmlFor="login-email" className="form__input-label">Email</label>
       <input className="form__input"
              type="email"
@@ -57,9 +57,8 @@ function LoginPopup(
              onChange={handleChange}
       />
       <span className={`form__error ${isValid ? 'form__error_hide' : ''}`}>{errors.password || ''}</span>
-      {!isRegisterPopupOpen && <span
+      <span
         className={`form__error form__error_type_server-msg ${!loginErrorMessage ? 'form__error_hide' : ''}`}>{loginErrorMessage || ''}</span>
-      }
       <input className={`form__submit-button ${!isValid ? 'form__submit-button_inactive' : '' }`}
              type="submit"
              name="submit"

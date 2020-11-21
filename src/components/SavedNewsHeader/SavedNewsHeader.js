@@ -1,8 +1,10 @@
 import React from 'react';
 import './SavedNewsHeader.css';
 import Navigation from '../../components/Navigation/Navigation';
+import {UserDataContext} from "../../contexts/UserDataContext";
 
-function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut, isPopupOpen }) {
+function SavedNewsHeader({ loggedIn, titles, onSignIn, onSignOut, isPopupOpen }) {
+  const userData = React.useContext(UserDataContext);
 
   return (
     <header className="saved-news-header">
@@ -10,7 +12,6 @@ function SavedNewsHeader({ loggedIn, titles, userData, onSignIn, onSignOut, isPo
         loggedIn={loggedIn}
         onSignIn={onSignIn}
         onSignOut={onSignOut}
-        userData={userData}
         theme={'saved-news'}
         isPopupOpen={isPopupOpen}
       />

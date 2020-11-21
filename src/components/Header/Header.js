@@ -3,7 +3,7 @@ import './Header.css';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Navigation from '../../components/Navigation/Navigation';
 
-function Header({ loggedIn, userData, onSignIn, onSignOut, isPopupOpen }) {
+function Header({ loggedIn, onSignIn, onSignOut, isPopupOpen }) {
 
   return (
     <header className="header">
@@ -11,7 +11,6 @@ function Header({ loggedIn, userData, onSignIn, onSignOut, isPopupOpen }) {
         loggedIn={loggedIn}
         onSignIn={onSignIn}
         onSignOut={onSignOut}
-        userData={userData}
         theme={'main'}
         isPopupOpen={isPopupOpen}
       />

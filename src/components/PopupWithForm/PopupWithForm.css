@@ -23,6 +23,7 @@
   -webkit-transition: visibility 0s, opacity .5s;
   -o-transition: visibility 0s, opacity .5s;
   transition: visibility 0s, opacity .5s;
+  z-index: 100;
 }
 
 .popup__container {

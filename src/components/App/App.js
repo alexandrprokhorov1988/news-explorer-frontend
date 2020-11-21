@@ -11,6 +11,7 @@ import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
 import mainApi from "../../utils/MainApi";
 import {SERVER_ERR} from "../../utils/constants";
+import {UserDataContext} from '../../contexts/UserDataContext';
 
 function App() {
   const history = useHistory();
@@ -63,6 +64,26 @@ function App() {
     setConfirmPopupOpen(false);
     document.removeEventListener('keydown', handleEscClose);
   }
+  function tokenCheck() {
+    mainApi.getUserInfo()
+      .then((res)=> {
+        if(res){
+          setUserData({
+            id: res._id,
+            name: res.name,
+          });
+          setLoginErrorMessage(null);
+          setLoggedIn(true);
+        }
+      })
+      .catch(err => {
+        if(err.toString() === 'TypeError: Failed to fetch') {
+          console.log(SERVER_ERR);
+        } else {
+          console.log(err);
+        }
+      });
+  }
   function handleRegister({ email, password, name }) {
     setIsLoading(true);
     return mainApi.register(email, password, name)
@@ -82,22 +103,6 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       })
-  }
-  function tokenCheck() {
-    mainApi.getUserInfo()
-      .then((res)=> {
-        if(res){
-          setUserData({
-            id: res._id,
-            name: res.name,
-          });
-          setLoginErrorMessage(null);
-          setLoggedIn(true);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
   function handleLogin({email, password}) {
     setIsLoading(true);
@@ -133,12 +138,12 @@ function App() {
 
   return (
     <div className="page">
+      <UserDataContext.Provider value={userData}>
       <Switch>
         <Route exact path="/">
           <Header
             loggedIn={loggedIn}
             onSignIn={handleLoginPopupOpen}
-            userData={userData}
             onSignOut={handleSignOut}
             isPopupOpen={isPopupOpen}
           />
@@ -152,7 +157,6 @@ function App() {
           <SavedNewsHeader
             loggedIn={loggedIn}
             onSignIn={handleLoginPopupOpen}
-            userData={userData}
             isPopupOpen={isPopupOpen}
             onSignOut={handleSignOut}
           />
@@ -167,7 +171,6 @@ function App() {
         isLoading={isLoading}
         registerErrorMessage={registerErrorMessage}
         onButtonLoginClick={handleLoginPopupOpen}
-        isRegisterPopupOpen={isRegisterPopupOpen}
       />
       <LoginPopup
         isOpen={isLoginPopupOpen}
@@ -176,13 +179,13 @@ function App() {
         isLoading={isLoading}
         loginErrorMessage={loginErrorMessage}
         onButtonRegisterClick={handleRegisterPopupOpen}
-        isRegisterPopupOpen={isRegisterPopupOpen}
       />
       <ConfirmPopup
         isOpen={isConfirmPopupOpen}
         onClose={closeAllPopups}
         onButtonClick={handleLoginPopupOpen}
       />
+      </UserDataContext.Provider>
     </div>
   );
 }

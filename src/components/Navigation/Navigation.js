@@ -3,10 +3,12 @@ import './Navigation.css';
 import logoWhite from '../../images/logout-white.svg';
 import logoBlack from '../../images/logout-black.svg';
 import {Link, useLocation} from 'react-router-dom';
+import {UserDataContext} from "../../contexts/UserDataContext";
 
-function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
+function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
+  const userData = React.useContext(UserDataContext);
 
   React.useEffect(() => {
     if (isPopupOpen) {
@@ -24,9 +26,9 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpe
         <Link className={`navigation__logo navigation__logo_theme_${theme}`} to="/">NewsExplorer</Link>
         {!isPopupOpen &&
         <button onClick={handleOpen}
-          className={`navigation__button navigation__button_type_${isOpenNav ? 'open' : 'close'}-${theme}`}/>
+                className={`navigation__button navigation__button_type_${isOpenNav ? 'open' : 'close'}-${theme}`}/>
         }
-          </div>
+      </div>
       <nav className={`nav nav_theme_${theme} ${isOpenNav ? 'nav_opened' : ''}`}>
         <ul className="nav__links">
           <li className="nav__list">
