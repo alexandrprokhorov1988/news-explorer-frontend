@@ -4,7 +4,7 @@ import NotFoundResults from '../../components/NotFoundResults/NotFoundResults';
 import Preloader from '../../components/Preloader/Preloader';
 import NewsCard from '../../components/NewsCard/NewsCard';
 
-function NewsCardList({ loggedIn, isLoading, cards, isFound, category }) {
+function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd }) {
 
   function handleClick() {
     console.log('ok');
@@ -18,12 +18,12 @@ function NewsCardList({ loggedIn, isLoading, cards, isFound, category }) {
         <div className="news-card-list__container">
           {isLoading ?
             <Preloader/> :
-            cards.map((card, index) => (
+            cards.map((card) => (
               <NewsCard
-                key={index}
+                key={card.id}
                 {...card}
                 loggedIn={loggedIn}
-                category={category}
+                onCardAdd={onCardAdd}
               />))}
         </div>
         {cards.length !== 0 &&

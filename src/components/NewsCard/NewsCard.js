@@ -6,22 +6,29 @@ function NewsCard(
   {
     urlToImage,
     alt = 'Картинка',
-    category,
-    date,
+    keyword,
     title,
+    text,
+    date,
     source,
-    content,
-    url,
+    link,
+    image,
+    description,
     isFaved = false,
-    loggedIn
+    loggedIn,
+    onCardAdd
   }) {
   const location = useLocation();
+
+  function handleClickAdd() {
+    onCardAdd();
+  }
 
   return (
     <article className="news-card">
       {location.pathname === '/saved-news' ?
         <button type="button" className='news-card__button news-card__button_type_delete'/> :
-        <button type="button"
+        <button onClick={handleClickAdd} type="button"
                 className={`news-card__button news-card__button_type_add ${isFaved ? 'news-card__button_active' : ''}`}
         />
       }
@@ -33,23 +40,24 @@ function NewsCard(
           {!loggedIn && <span className="news-card__button-popup">Войдите, чтобы сохранять статьи</span>}
         </>
       }
+      <a href={link}
+         className="news-card__link"
+         target="_blank"
+         rel="noreferrer"
+         title={description}
+      >
       {location.pathname === '/saved-news' &&
-      <span className="news-card__category news-card__category_active">{category}</span>}
-      <img className="news-card__img" src={urlToImage} alt={alt}/>
+      <span className="news-card__category news-card__category_active">{keyword}</span>}
+      <img className="news-card__img" src={image} alt={alt}/>
       <div className="news-card__description-container">
         <div>
           <p className="news-card__date">{date}</p>
-          <a href={url}
-             className="news-card__link"
-             target="_blank"
-             rel="noreferrer"
-          >
             <h2 className="news-card__title">{title}</h2>
-          </a>
-          <p className="news-card__text">{content}</p>
+          <p className="news-card__text">{text}</p>
         </div>
-        <p className="news-card__source">{source.name}</p>
+        <p className="news-card__source">{source}</p>
       </div>
+      </a>
     </article>
   );
 }

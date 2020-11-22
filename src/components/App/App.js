@@ -28,7 +28,6 @@ function App() {
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState(null);
   const [isFound, setIsFound] = React.useState(false);
-  const [category, setCategory] = React.useState(null);
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -157,16 +156,25 @@ function App() {
   function handleSearch(value) {
     setIsLoading(true);
     setIsFound(true);
-    setCategory(value);
     return newsApi.getSearchCardsResults(value)
       .then((res) => {
-        const newCards = res.map((elem) => {
+        const newCards = res.map((elem, index) => {
           let timestamp = Date.parse(elem.publishedAt);
           let date = new Date(timestamp);
           let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long'});
           let year = date.getFullYear();
           let newDate = `${dayAndMonth}, ${year}`;
-          return { ...elem, date: newDate };
+          return {
+            id: index,
+            keyword: value,
+            title: elem.title,
+            text: elem.content,
+            date: newDate,
+            source: elem.source.name,
+            link: elem.url,
+            image: elem.urlToImage,
+            description: elem.description
+          };
         });
         setCards(newCards);
         localStorage.setItem('news-cards', JSON.stringify(newCards));
@@ -178,7 +186,20 @@ function App() {
         setIsLoading(false);
       })
   }
+
+  function handleCardAdd() {
+    console.log('work');
+
+    // const newCards = res.map((elem) => {
+    //   return { ...elem, isFaved: true };
+    //   setCards(newCards);
+    //   localStorage.setItem('news-cards', JSON.stringify(newCards));
+    // })
+  }
+
   console.log(cards);
+
+
 
   return (
     <div className="page">
@@ -198,7 +219,7 @@ function App() {
                 isLoading={isLoading}
                 cards={cards}
                 isFound={isFound}
-                categry={category}
+                onCardAdd={handleCardAdd}
               />
             </Route>
 
