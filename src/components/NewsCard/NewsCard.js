@@ -1,6 +1,7 @@
 import React from 'react';
 import './NewsCard.css';
 import {useLocation} from 'react-router-dom';
+// import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function NewsCard(
   {
@@ -16,10 +17,12 @@ function NewsCard(
     description,
     isFaved = false,
     loggedIn,
-    onCardAdd
+    onCardAdd,
+    // owner
   }) {
+  // const currentUser = React.useContext(CurrentUserContext);
   const location = useLocation();
-
+  // const isFaved = owner === currentUser.id;
   function handleClickAdd() {
     onCardAdd();
   }
