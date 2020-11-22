@@ -179,8 +179,8 @@ function App() {
         setCards(newCards);
         localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        console.log('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
       })
       .finally(() => {
         setIsLoading(false);

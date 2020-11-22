@@ -7,16 +7,18 @@ import Preloader from '../../components/Preloader/Preloader';
 function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd }) {
   const [count, setCount] = React.useState(0);
   const [cardRow, setCardRow] = React.useState([]);
+  const [remainCards, setRemainCards] = React.useState(0);
 
   React.useEffect(()=>{
     if(cards.length > 0){
+      setRemainCards(cards.length-1);
       handleClick();
     }
   }, [cards]);
 
 
   function handleClick() {
-    if (cards.length >= count) {
+    if (cards.length >= 0) {
       let addCardRow = cards.slice(count, count + 3).map((card) => (
         <NewsCard
           key={card.id}
@@ -26,6 +28,7 @@ function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd
         />));
       setCardRow([...cardRow, addCardRow]);
       setCount(count + 3);
+      setRemainCards(remainCards + 3);
     } else {
       return;
     }
@@ -39,10 +42,11 @@ function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd
         <div className="news-card-list__container">
           {isLoading ?
           <Preloader/> :
-            <>{car}</>
+            <>{cardRow}</>
           }
         </div>
-        {cards.length !== 0 &&
+        {/*{(cards.length > 0) &&*/}
+        {(remainCards <= cards.length) &&
         <button
           type="button"
           className="news-card-list__button-more"
