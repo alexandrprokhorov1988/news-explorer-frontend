@@ -69,6 +69,33 @@ class MainApi {
         return Promise.reject('Ошибка сервера');
       })
   }
+
+  setNewCard(keyword, title, text, date, source, link, image) {
+    return fetch(`${this._baseUrl}/articles`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        keyword: keyword,
+        title: title,
+        text: text,
+        date: date,
+        source: source,
+        link: link,
+        image: image,
+      })
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res.json());
+      })
+  }
+
 }
 
 const mainApi = new MainApi({

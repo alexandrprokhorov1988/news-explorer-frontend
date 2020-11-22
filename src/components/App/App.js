@@ -161,11 +161,11 @@ function App() {
         const newCards = res.map((elem, index) => {
           let timestamp = Date.parse(elem.publishedAt);
           let date = new Date(timestamp);
-          let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long'});
+          let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long' });
           let year = date.getFullYear();
           let newDate = `${dayAndMonth}, ${year}`;
           return {
-            id: index,
+            dataId: index,
             keyword: value,
             title: elem.title,
             text: elem.content,
@@ -187,18 +187,23 @@ function App() {
       })
   }
 
-  function handleCardAdd() {
-    console.log('work');
-
-    // const newCards = res.map((elem) => {
-    //   return { ...elem, isFaved: true };
-    //   setCards(newCards);
-    //   localStorage.setItem('news-cards', JSON.stringify(newCards));
-    // })
+  function handleCardAdd(dataId, keyword, title, text, date, source, link, image) {
+    return mainApi.setNewCard(keyword, title, text, date, source, link, image)
+      .then((newCard) => {
+        const obj = {
+          ...newCard,
+          isFaved: true,
+          dataId: dataId,
+        };
+        const newCards = cards.map((c) => c.dataId === dataId ? obj : c);
+        setCards(newCards);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   console.log(cards);
-
 
 
   return (

@@ -9,19 +9,18 @@ function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd
   const [cardRow, setCardRow] = React.useState([]);
   const [remainCards, setRemainCards] = React.useState(0);
 
-  React.useEffect(()=>{
-    if(cards.length > 0){
-      setRemainCards(cards.length-1);
+  React.useEffect(() => {
+    if (cards.length > 0) {
+      setRemainCards(cards.length - 1);
       handleClick();
     }
   }, [cards]);
 
-
   function handleClick() {
     if (cards.length >= 0) {
-      let addCardRow = cards.slice(count, count + 3).map((card) => (
+      const addCardRow = cards.slice(count, count + 3).map((card) => (
         <NewsCard
-          key={card.id}
+          key={card.dataId}
           {...card}
           loggedIn={loggedIn}
           onCardAdd={onCardAdd}
@@ -29,9 +28,8 @@ function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd
       setCardRow([...cardRow, addCardRow]);
       setCount(count + 3);
       setRemainCards(remainCards + 3);
-    } else {
-      return;
     }
+    return;
   }
 
   return (
@@ -41,11 +39,10 @@ function NewsCardList({ loggedIn, isLoading, cards, isFound, category, onCardAdd
         <h2 className="news-card-list__title">Результаты поиска</h2>
         <div className="news-card-list__container">
           {isLoading ?
-          <Preloader/> :
+            <Preloader/> :
             <>{cardRow}</>
           }
         </div>
-        {/*{(cards.length > 0) &&*/}
         {(remainCards <= cards.length) &&
         <button
           type="button"

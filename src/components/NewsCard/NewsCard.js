@@ -7,6 +7,7 @@ function NewsCard(
   {
     urlToImage,
     alt = 'Картинка',
+    dataId,
     keyword,
     title,
     text,
@@ -21,12 +22,18 @@ function NewsCard(
     // owner
   }) {
   // const currentUser = React.useContext(CurrentUserContext);
+
   const location = useLocation();
   // const isFaved = owner === currentUser.id;
-  function handleClickAdd() {
-    onCardAdd();
-  }
+  // const [isFaved, setIsFaved] = React.useState(false);
 
+  function handleClickAdd() {
+    onCardAdd(dataId, keyword, title, text, date, source, link, image);
+      // .then(()=>{
+      //   setIsFaved(true);
+      // })
+  }
+console.log(isFaved);
   return (
     <article className="news-card">
       {location.pathname === '/saved-news' ?
