@@ -2,7 +2,19 @@ import React from 'react';
 import './NewsCard.css';
 import {useLocation} from 'react-router-dom';
 
-function NewsCard({ link, alt, category, date, title, source, text, isFaved, loggedIn }) {
+function NewsCard(
+  {
+    urlToImage,
+    alt = 'Картинка',
+    category,
+    date,
+    title,
+    source,
+    content,
+    url,
+    isFaved = false,
+    loggedIn
+  }) {
   const location = useLocation();
 
   return (
@@ -23,14 +35,20 @@ function NewsCard({ link, alt, category, date, title, source, text, isFaved, log
       }
       {location.pathname === '/saved-news' &&
       <span className="news-card__category news-card__category_active">{category}</span>}
-      <img className="news-card__img" src={link} alt={alt || 'Картинка'}/>
+      <img className="news-card__img" src={urlToImage} alt={alt}/>
       <div className="news-card__description-container">
         <div>
           <p className="news-card__date">{date}</p>
-          <h2 className="news-card__title">{title}</h2>
-          <p className="news-card__text">{text}</p>
+          <a href={url}
+             className="news-card__link"
+             target="_blank"
+             rel="noreferrer"
+          >
+            <h2 className="news-card__title">{title}</h2>
+          </a>
+          <p className="news-card__text">{content}</p>
         </div>
-        <p className="news-card__source">{source}</p>
+        <p className="news-card__source">{source.name}</p>
       </div>
     </article>
   );

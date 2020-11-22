@@ -3,12 +3,12 @@ import './Navigation.css';
 import logoWhite from '../../images/logout-white.svg';
 import logoBlack from '../../images/logout-black.svg';
 import {Link, useLocation} from 'react-router-dom';
-import {UserDataContext} from "../../contexts/UserDataContext";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
-  const userData = React.useContext(UserDataContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     if (isPopupOpen) {
@@ -45,7 +45,7 @@ function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
               </li>
               <li className="nav__list">
                 <button onClick={onSignOut} className={`nav__button nav__button_theme_${theme}`}>
-                  {userData ? userData.name : ''}
+                  {currentUser ? currentUser.name : ''}
                   <img className="nav__img"
                        src={theme === 'main' ? logoWhite : logoBlack}
                        alt="Выход"/>

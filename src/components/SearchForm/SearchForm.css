@@ -35,6 +35,10 @@
   border: none;
 }
 
+.search-form__input_type_error{
+  color: #FF0000;
+}
+
 .search-form__submit-button {
   background: #2F71E5;
   border-radius: 100px;

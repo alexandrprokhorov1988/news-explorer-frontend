@@ -10,13 +10,15 @@ import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
 import mainApi from "../../utils/MainApi";
+import newsApi from "../../utils/NewsApi";
 import {SERVER_ERR} from "../../utils/constants";
-import {UserDataContext} from '../../contexts/UserDataContext';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const history = useHistory();
+  const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isFoundArticles, setIsFoundArticles] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false);
@@ -24,7 +26,9 @@ function App() {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [loginErrorMessage, setLoginErrorMessage] = React.useState(null);
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
-  const [userData, setUserData] = React.useState(null);
+  const [currentUser, setCurrentUser] = React.useState(null);
+  const [isFound, setIsFound] = React.useState(false);
+  const [category, setCategory] = React.useState(null);
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -36,6 +40,11 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
+    const cards = JSON.parse(localStorage.getItem('news-cards'));
+    if (cards) {
+      setIsFound(true);
+      setCards(cards);
+    }
   }, []);
 
   function handleEscClose(e) {
@@ -43,32 +52,37 @@ function App() {
       closeAllPopups();
     }
   }
+
   function handleConfirmPopupOpen() {
     closeAllPopups();
     setConfirmPopupOpen(true);
     document.addEventListener('keydown', handleEscClose);
   }
+
   function handleRegisterPopupOpen() {
     closeAllPopups();
     setRegisterPopupOpen(true);
     document.addEventListener('keydown', handleEscClose);
   }
+
   function handleLoginPopupOpen() {
     closeAllPopups();
     setLoginPopupOpen(true);
     document.addEventListener('keydown', handleEscClose);
   }
+
   function closeAllPopups() {
     setRegisterPopupOpen(false);
     setLoginPopupOpen(false);
     setConfirmPopupOpen(false);
     document.removeEventListener('keydown', handleEscClose);
   }
+
   function tokenCheck() {
     mainApi.getUserInfo()
-      .then((res)=> {
-        if(res){
-          setUserData({
+      .then((res) => {
+        if (res) {
+          setCurrentUser({
             id: res._id,
             name: res.name,
           });
@@ -77,13 +91,14 @@ function App() {
         }
       })
       .catch(err => {
-        if(err.toString() === 'TypeError: Failed to fetch') {
-          console.log(SERVER_ERR);
+        if (err.toString() === 'TypeError: Failed to fetch') {
+          console.log('Токен не передан');
         } else {
           console.log(err);
         }
       });
   }
+
   function handleRegister({ email, password, name }) {
     setIsLoading(true);
     return mainApi.register(email, password, name)
@@ -92,7 +107,7 @@ function App() {
         setRegisterErrorMessage(null);
       })
       .catch((err) => {
-        if(err.toString() === 'TypeError: Failed to fetch'){
+        if (err.toString() === 'TypeError: Failed to fetch') {
           setRegisterErrorMessage(SERVER_ERR);
         } else {
           err.then((msg) => {
@@ -104,16 +119,17 @@ function App() {
         setIsLoading(false);
       })
   }
-  function handleLogin({email, password}) {
+
+  function handleLogin({ email, password }) {
     setIsLoading(true);
     return mainApi.authorize(email, password)
-      .then(()=>{
+      .then(() => {
         setLoginErrorMessage(null);
         tokenCheck();
         closeAllPopups();
       })
       .catch((err) => {
-        if(err.toString() === 'TypeError: Failed to fetch'){
+        if (err.toString() === 'TypeError: Failed to fetch') {
           setLoginErrorMessage(SERVER_ERR);
         } else {
           err.then((msg) => {
@@ -125,6 +141,7 @@ function App() {
         setIsLoading(false);
       })
   }
+
   function handleSignOut() {
     return mainApi.signOut()
       .then(() => {
@@ -136,56 +153,93 @@ function App() {
       })
   }
 
+
+  function handleSearch(value) {
+    setIsLoading(true);
+    setIsFound(true);
+    setCategory(value);
+    return newsApi.getSearchCardsResults(value)
+      .then((res) => {
+        const newCards = res.map((elem) => {
+          let timestamp = Date.parse(elem.publishedAt);
+          let date = new Date(timestamp);
+          let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long'});
+          let year = date.getFullYear();
+          let newDate = `${dayAndMonth}, ${year}`;
+          return { ...elem, date: newDate };
+        });
+        setCards(newCards);
+        localStorage.setItem('news-cards', JSON.stringify(newCards));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+  console.log(cards);
+
   return (
     <div className="page">
-      <UserDataContext.Provider value={userData}>
-      <Switch>
-        <Route exact path="/">
-          <Header
-            loggedIn={loggedIn}
-            onSignIn={handleLoginPopupOpen}
-            onSignOut={handleSignOut}
-            isPopupOpen={isPopupOpen}
-          />
-          <Main
-            loggedIn={loggedIn}
+      <CurrentUserContext.Provider value={currentUser}>
+        <main className="content">
+          <Switch>
+            <Route exact path="/">
+              <Header
+                loggedIn={loggedIn}
+                onSignIn={handleLoginPopupOpen}
+                onSignOut={handleSignOut}
+                isPopupOpen={isPopupOpen}
+                onSearch={handleSearch}
+              />
+              <Main
+                loggedIn={loggedIn}
+                isLoading={isLoading}
+                cards={cards}
+                isFound={isFound}
+                categry={category}
+              />
+            </Route>
+
+            <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
+              <SavedNewsHeader
+                loggedIn={loggedIn}
+                onSignIn={handleLoginPopupOpen}
+                isPopupOpen={isPopupOpen}
+                onSignOut={handleSignOut}
+              />
+              <SavedNews/>
+            </ProtectedRoute>
+
+            <Route path="*">
+              <Redirect to="/"/>
+            </Route>
+          </Switch>
+          <Footer/>
+          <RegisterPopup
+            isOpen={isRegisterPopupOpen}
+            onClose={closeAllPopups}
+            onRegister={handleRegister}
             isLoading={isLoading}
-            isFoundArticles={isFoundArticles}
+            registerErrorMessage={registerErrorMessage}
+            onButtonLoginClick={handleLoginPopupOpen}
           />
-        </Route>
-        <Route path="/saved-news">
-          <SavedNewsHeader
-            loggedIn={loggedIn}
-            onSignIn={handleLoginPopupOpen}
-            isPopupOpen={isPopupOpen}
-            onSignOut={handleSignOut}
+          <LoginPopup
+            isOpen={isLoginPopupOpen}
+            onClose={closeAllPopups}
+            onLogin={handleLogin}
+            isLoading={isLoading}
+            loginErrorMessage={loginErrorMessage}
+            onButtonRegisterClick={handleRegisterPopupOpen}
           />
-          <SavedNews/>
-        </Route>
-      </Switch>
-      <Footer/>
-      <RegisterPopup
-        isOpen={isRegisterPopupOpen}
-        onClose={closeAllPopups}
-        onRegister={handleRegister}
-        isLoading={isLoading}
-        registerErrorMessage={registerErrorMessage}
-        onButtonLoginClick={handleLoginPopupOpen}
-      />
-      <LoginPopup
-        isOpen={isLoginPopupOpen}
-        onClose={closeAllPopups}
-        onLogin={handleLogin}
-        isLoading={isLoading}
-        loginErrorMessage={loginErrorMessage}
-        onButtonRegisterClick={handleRegisterPopupOpen}
-      />
-      <ConfirmPopup
-        isOpen={isConfirmPopupOpen}
-        onClose={closeAllPopups}
-        onButtonClick={handleLoginPopupOpen}
-      />
-      </UserDataContext.Provider>
+          <ConfirmPopup
+            isOpen={isConfirmPopupOpen}
+            onClose={closeAllPopups}
+            onButtonClick={handleLoginPopupOpen}
+          />
+        </main>
+      </CurrentUserContext.Provider>
     </div>
   );
 }
