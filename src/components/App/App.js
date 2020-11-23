@@ -11,7 +11,7 @@ import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
 import mainApi from "../../utils/MainApi";
 import newsApi from "../../utils/NewsApi";
-import {SERVER_ERR} from "../../utils/constants";
+import {CARD_SEARCH_ERR, CONNECTION_REFUSED, SERVER_ERR} from "../../utils/constants";
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -45,6 +45,7 @@ function App() {
       setCards(cards);
     }
   }, []);
+
 
   function handleEscClose(e) {
     if (e.key === 'Escape') {
@@ -91,9 +92,11 @@ function App() {
       })
       .catch(err => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          console.log('Токен не передан');
+          console.log(CONNECTION_REFUSED);
         } else {
-          console.log(err);
+          err.then((msg) => {
+            console.log(msg.message || SERVER_ERR);
+          });
         }
       });
   }
@@ -107,7 +110,7 @@ function App() {
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          setRegisterErrorMessage(SERVER_ERR);
+          setRegisterErrorMessage(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
             setRegisterErrorMessage(msg.message || SERVER_ERR);
@@ -129,7 +132,7 @@ function App() {
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          setLoginErrorMessage(SERVER_ERR);
+          setLoginErrorMessage(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
             setLoginErrorMessage(msg.message || SERVER_ERR);
@@ -143,15 +146,15 @@ function App() {
 
   function handleSignOut() {
     return mainApi.signOut()
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         setLoggedIn(false);
         history.push('/');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        console.log(SERVER_ERR);
       })
   }
-
 
   function handleSearch(value) {
     setIsLoading(true);
@@ -180,7 +183,7 @@ function App() {
         localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
       .catch(() => {
-        console.log('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+        console.log(CARD_SEARCH_ERR);
       })
       .finally(() => {
         setIsLoading(false);
@@ -197,14 +200,49 @@ function App() {
         };
         const newCards = cards.map((c) => c.dataId === dataId ? obj : c);
         setCards(newCards);
+        localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
       .catch((err) => {
-        console.log(err);
+        if (err.toString() === 'TypeError: Failed to fetch') {
+          console.log(CONNECTION_REFUSED);
+        } else {
+          err.then((msg) => {
+            console.log(msg.message || SERVER_ERR);
+          });
+        }
       })
   }
 
-  console.log(cards);
 
+  function handleCardDelete(id, dataId, keyword, title, text, date, source, link, image) {
+    return mainApi.deleteCard(id)
+      .then((res) => {
+        console.log(res.message);
+        const obj = {
+          dataId: dataId,
+          keyword: keyword,
+          title: title,
+          text: text,
+          date: date,
+          source: source,
+          link: link,
+          image: image,
+          isFaved: false,
+        };
+        const newCards = cards.map((c) => c.dataId === dataId ? obj : c);
+        setCards(newCards);
+        localStorage.setItem('news-cards', JSON.stringify(newCards));
+      })
+      .catch((err) => {
+        if (err.toString() === 'TypeError: Failed to fetch') {
+          console.log(CONNECTION_REFUSED);
+        } else {
+          err.then((msg) => {
+            console.log(msg.message || SERVER_ERR);
+          });
+        }
+      })
+  }
 
   return (
     <div className="page">
@@ -225,6 +263,7 @@ function App() {
                 cards={cards}
                 isFound={isFound}
                 onCardAdd={handleCardAdd}
+                onCardDelete={handleCardDelete}
               />
             </Route>
 

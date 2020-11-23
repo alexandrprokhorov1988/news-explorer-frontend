@@ -1,12 +1,12 @@
 import React from 'react';
 import './NewsCard.css';
 import {useLocation} from 'react-router-dom';
-// import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function NewsCard(
   {
     urlToImage,
     alt = 'Картинка',
+    _id = null,
     dataId,
     keyword,
     title,
@@ -19,21 +19,19 @@ function NewsCard(
     isFaved = false,
     loggedIn,
     onCardAdd,
-    // owner
+    onCardDelete
   }) {
-  // const currentUser = React.useContext(CurrentUserContext);
 
   const location = useLocation();
-  // const isFaved = owner === currentUser.id;
-  // const [isFaved, setIsFaved] = React.useState(false);
 
   function handleClickAdd() {
-    onCardAdd(dataId, keyword, title, text, date, source, link, image);
-      // .then(()=>{
-      //   setIsFaved(true);
-      // })
+    if (isFaved) {
+      onCardDelete(_id, dataId, keyword, title, text, date, source, link, image);
+    } else {
+      onCardAdd(dataId, keyword, title, text, date, source, link, image);
+    }
   }
-console.log(isFaved);
+
   return (
     <article className="news-card">
       {location.pathname === '/saved-news' ?
@@ -56,17 +54,17 @@ console.log(isFaved);
          rel="noreferrer"
          title={description}
       >
-      {location.pathname === '/saved-news' &&
-      <span className="news-card__category news-card__category_active">{keyword}</span>}
-      <img className="news-card__img" src={image} alt={alt}/>
-      <div className="news-card__description-container">
-        <div>
-          <p className="news-card__date">{date}</p>
+        {location.pathname === '/saved-news' &&
+        <span className="news-card__category news-card__category_active">{keyword}</span>}
+        <img className="news-card__img" src={image} alt={alt}/>
+        <div className="news-card__description-container">
+          <div>
+            <p className="news-card__date">{date}</p>
             <h2 className="news-card__title">{title}</h2>
-          <p className="news-card__text">{text}</p>
+            <p className="news-card__text">{text}</p>
+          </div>
+          <p className="news-card__source">{source}</p>
         </div>
-        <p className="news-card__source">{source}</p>
-      </div>
       </a>
     </article>
   );

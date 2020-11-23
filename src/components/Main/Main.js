@@ -2,7 +2,16 @@ import React from 'react';
 import About from '../../components/About/About';
 import NewsCardList from '../../components/NewsCardList/NewsCardList';
 
-function Main({ loggedIn, isLoading, cards, isFound, category, onCardAdd }) {
+function Main(
+  {
+    loggedIn,
+    isLoading,
+    cards,
+    isFound,
+    category,
+    onCardAdd,
+    onCardDelete
+  }) {
 
   return (
     <>
@@ -13,6 +22,7 @@ function Main({ loggedIn, isLoading, cards, isFound, category, onCardAdd }) {
         isFound={isFound}
         category={category}
         onCardAdd={onCardAdd}
+        onCardDelete={onCardDelete}
       />
       <About/>
     </>

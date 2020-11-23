@@ -53,7 +53,7 @@ class MainApi {
         if (res.status === 200) {
           return res.json();
         }
-        return Promise.reject('Ошибка токена');
+        return Promise.reject(res.json());
       })
   }
 
@@ -64,9 +64,9 @@ class MainApi {
     })
       .then((res) => {
         if (res.status === 200) {
-          return;
+          return res.json();
         }
-        return Promise.reject('Ошибка сервера');
+        return Promise.reject(res.status);
       })
   }
 
@@ -87,6 +87,23 @@ class MainApi {
         link: link,
         image: image,
       })
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res.json());
+      })
+  }
+
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/articles/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
     })
       .then((res) => {
         if (res.status === 200) {
