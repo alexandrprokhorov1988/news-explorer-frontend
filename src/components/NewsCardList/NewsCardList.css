@@ -51,7 +51,7 @@
 }
 
 .news-card-list__button-more:hover {
-  opacity: 0.9;
+  background: #e8e8e8;
 }
 
 @media screen and (max-width: 768px) {

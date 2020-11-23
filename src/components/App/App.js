@@ -46,7 +46,6 @@ function App() {
     }
   }, []);
 
-
   function handleEscClose(e) {
     if (e.key === 'Escape') {
       closeAllPopups();
@@ -213,23 +212,11 @@ function App() {
       })
   }
 
-
-  function handleCardDelete(id, dataId, keyword, title, text, date, source, link, image) {
+  function handleCardDelete(id, dataId) {
     return mainApi.deleteCard(id)
       .then((res) => {
         console.log(res.message);
-        const obj = {
-          dataId: dataId,
-          keyword: keyword,
-          title: title,
-          text: text,
-          date: date,
-          source: source,
-          link: link,
-          image: image,
-          isFaved: false,
-        };
-        const newCards = cards.map((c) => c.dataId === dataId ? obj : c);
+        const newCards = cards.map((c) => c.dataId === dataId ? {...c, isFaved: false} : c);
         setCards(newCards);
         localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
@@ -273,6 +260,7 @@ function App() {
                 onSignIn={handleLoginPopupOpen}
                 isPopupOpen={isPopupOpen}
                 onSignOut={handleSignOut}
+                cards={cards}
               />
               <SavedNews/>
             </ProtectedRoute>

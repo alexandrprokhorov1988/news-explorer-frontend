@@ -15,46 +15,13 @@ function NewsCardList(
     onCardDelete
   }) {
   const [count, setCount] = React.useState(0);
-  // const [cardRow, setCardRow] = React.useState([]);
-  // const [remainCards, setRemainCards] = React.useState(0);
 
-  // React.useEffect(() => {
-  //   if (cards.length > 0) {
-  //     // setRemainCards(cards.length - 1);
-  //     // handleClick();
-  //     // setCardRow(cards.slice(0, count + 3));
-  //   }
-  // }, [cards]);
-
-
-  // function handleClick() {
-  //   if (cards.length >= 0) {
-  //     const addCardRow = cards.slice(count, count + 3).map((card) => (
-  //       <NewsCard
-  //         key={card.dataId}
-  //         {...card}
-  //         loggedIn={loggedIn}
-  //         onCardAdd={onCardAdd}
-  //       />));
-  //     setCardRow([...cardRow, addCardRow]);
-  //     setCount(count + 3);
-  //     setRemainCards(remainCards + 3);
-  //   }
-  //   return;
-  // }
   function handleClick() {
     if (cards.length >= 0) {
-      //   const addCardRow = cards.slice(3, count + 3);
-      //   console.log(addCardRow);
-      //   setCardRow(addCardRow);
       setCount(count + 3);
-      // setRemainCards(remainCards - 3);
     }
-    return;
   }
 
-// console.log(remainCards);
-//   console.log(cardRow);
   return (
     <>
       {isFound &&

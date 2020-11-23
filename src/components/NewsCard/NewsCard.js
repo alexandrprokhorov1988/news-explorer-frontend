@@ -26,7 +26,7 @@ function NewsCard(
 
   function handleClickAdd() {
     if (isFaved) {
-      onCardDelete(_id, dataId, keyword, title, text, date, source, link, image);
+      onCardDelete(_id, dataId);
     } else {
       onCardAdd(dataId, keyword, title, text, date, source, link, image);
     }
