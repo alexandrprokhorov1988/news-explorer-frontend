@@ -28,6 +28,7 @@ function App() {
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState(null);
   const [isFound, setIsFound] = React.useState(false);
+  const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -179,6 +180,7 @@ function App() {
           };
         });
         setCards(newCards);
+        setCount(0);
         localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
       .catch(() => {
@@ -231,6 +233,12 @@ function App() {
       })
   }
 
+  function handleShowMore() {
+    if (cards.length >= 0) {
+      setCount(count + 3);
+    }
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -251,6 +259,8 @@ function App() {
                 isFound={isFound}
                 onCardAdd={handleCardAdd}
                 onCardDelete={handleCardDelete}
+                count={count}
+                onShowMore={handleShowMore}
               />
             </Route>
 

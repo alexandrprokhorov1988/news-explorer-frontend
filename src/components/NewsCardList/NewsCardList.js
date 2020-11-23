@@ -12,14 +12,13 @@ function NewsCardList(
     isFound,
     category,
     onCardAdd,
-    onCardDelete
+    onCardDelete,
+    count,
+    onShowMore
   }) {
-  const [count, setCount] = React.useState(0);
 
   function handleClick() {
-    if (cards.length >= 0) {
-      setCount(count + 3);
-    }
+    onShowMore();
   }
 
   return (

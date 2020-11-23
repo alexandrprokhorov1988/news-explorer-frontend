@@ -10,7 +10,9 @@ function Main(
     isFound,
     category,
     onCardAdd,
-    onCardDelete
+    onCardDelete,
+    count,
+    onShowMore
   }) {
 
   return (
@@ -23,6 +25,8 @@ function Main(
         category={category}
         onCardAdd={onCardAdd}
         onCardDelete={onCardDelete}
+        count={count}
+        onShowMore={onShowMore}
       />
       <About/>
     </>
