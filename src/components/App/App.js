@@ -148,7 +148,7 @@ function App() {
   function handleSignOut() {
     return mainApi.signOut()
       .then((res) => {
-        console.log(res);
+        console.log(res.message);
         setLoggedIn(false);
         history.push('/');
       })
@@ -219,13 +219,21 @@ function App() {
       })
   }
 
-  function handleCardDelete(id, dataId) {
+  function handleCardDelete(id, dataId, type) {
     return mainApi.deleteCard(id)
       .then((res) => {
         console.log(res.message);
-        const newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
-        setCards(newCards);
-        localStorage.setItem('news-cards', JSON.stringify(newCards));
+        if (type === 'news') {
+          const newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
+          setCards(newCards);
+          localStorage.setItem('news-cards', JSON.stringify(newCards));
+        } else if (type === 'saved') {
+          const newSavedCards = savedCards.filter((c) => c._id !== id);
+          const newCards = cards.map((c) => c._id === id ? { ...c, isFaved: false } : c);
+          setCards(newCards);
+          setSavedCards(newSavedCards);
+        }
+        return false;
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
@@ -244,13 +252,11 @@ function App() {
     }
   }
 
-
   function getSavedCards() {
     setIsLoading(true);
     return mainApi.getSavedCards()
       .then((res) => {
         setSavedCards(res.reverse());
-        // localStorage.setItem('saved-cards', JSON.stringify(res));
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
@@ -291,7 +297,11 @@ function App() {
                 onSignIn={handleLoginPopupOpen}
               />
             </Route>
-            <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
+            <ProtectedRoute
+              path="/saved-news"
+              loggedIn={loggedIn}
+              onRedirect={handleLoginPopupOpen}
+            >
               <SavedNewsHeader
                 loggedIn={loggedIn}
                 onSignIn={handleLoginPopupOpen}

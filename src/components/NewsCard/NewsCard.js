@@ -29,14 +29,14 @@ function NewsCard(
     if (!loggedIn) {
       onSignIn();
     } else if (isFaved) {
-      onCardDelete(_id, dataId);
+      onCardDelete(_id, dataId, 'news');
     } else {
       onCardAdd(dataId, keyword, title, text, date, source, link, image);
     }
   }
 
   function handleClickDelete() {
-    onCardDelete(_id, dataId);
+    onCardDelete(_id, dataId, 'saved');
   }
 
   return (

@@ -11,8 +11,7 @@ function SavedNewsHeader(
 
   React.useEffect(() => {
     function getPopularCategory() {
-      console.log(savedCards);
-      const categoryCountObj = savedCards.reduce((acc, cur, i, arr)=>{
+      const categoryCountObj = savedCards.reduce((acc, cur)=>{
         if(acc[cur.keyword]){
           acc[cur.keyword] += 1;
         } else {
@@ -20,20 +19,10 @@ function SavedNewsHeader(
         }
         return acc;
       }, {});
-      console.log(categoryCountObj);
-
       const arrNames = Object.keys(categoryCountObj).sort((a, b) => {
           return categoryCountObj[b] - categoryCountObj[a];
       });
-      console.log(arrNames);
       setCategory(arrNames);
-
-
-      if(arrNames.length <= 3){
-
-      } else {
-      }
-
     }
 
     getPopularCategory();
