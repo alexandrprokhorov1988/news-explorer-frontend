@@ -12,7 +12,8 @@ function Main(
     onCardAdd,
     onCardDelete,
     count,
-    onShowMore
+    onShowMore,
+    onSignIn
   }) {
 
   return (
@@ -27,6 +28,7 @@ function Main(
         onCardDelete={onCardDelete}
         count={count}
         onShowMore={onShowMore}
+        onSignIn={onSignIn}
       />
       <About/>
     </>

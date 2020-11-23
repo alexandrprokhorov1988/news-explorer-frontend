@@ -1,16 +1,31 @@
 import React from 'react';
 import './SavedNews.css';
-import img8 from '../../images/image_06.png'
-import img4 from '../../images/image_01.png';
-import img7 from '../../images/image_05.png';
 import NewsCard from '../../components/NewsCard/NewsCard';
+import Preloader from '../../components/Preloader/Preloader';
 
-function SavedNews() {
+function SavedNews(
+  {
+    isLoading,
+    loggedIn,
+    onCardDelete,
+    onGetCards,
+    savedCards,
+  }) {
+
+  React.useEffect(() => {
+    onGetCards();
+  }, []); //todo []
 
   return (
     <section className="saved-news">
       <div className="saved-news__container">
-
+        {isLoading ? <Preloader/> : savedCards.map((card) => (
+          <NewsCard key={card._id}
+                    {...card}
+                    loggedIn={loggedIn}
+                    onCardDelete={onCardDelete}
+          />))
+        }
       </div>
     </section>
   );

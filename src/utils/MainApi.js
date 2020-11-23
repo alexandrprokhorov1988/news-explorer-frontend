@@ -113,6 +113,23 @@ class MainApi {
       })
   }
 
+  getSavedCards() {
+    return fetch(`${this._baseUrl}/articles`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res.json());
+      })
+  }
+
 }
 
 const mainApi = new MainApi({

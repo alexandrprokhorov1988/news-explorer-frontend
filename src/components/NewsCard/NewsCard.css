@@ -181,6 +181,8 @@
   color: #B6BCBF;
   margin: 0;
   padding-bottom: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 768px) {

@@ -18,6 +18,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 function App() {
   const history = useHistory();
   const [cards, setCards] = React.useState([]);
+  const [savedCards, setSavedCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
@@ -161,27 +162,31 @@ function App() {
     setIsFound(true);
     return newsApi.getSearchCardsResults(value)
       .then((res) => {
-        const newCards = res.map((elem, index) => {
-          let timestamp = Date.parse(elem.publishedAt);
-          let date = new Date(timestamp);
-          let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long' });
-          let year = date.getFullYear();
-          let newDate = `${dayAndMonth}, ${year}`;
-          return {
-            dataId: index,
-            keyword: value,
-            title: elem.title,
-            text: elem.content,
-            date: newDate,
-            source: elem.source.name,
-            link: elem.url,
-            image: elem.urlToImage,
-            description: elem.description
-          };
-        });
-        setCards(newCards);
-        setCount(0);
-        localStorage.setItem('news-cards', JSON.stringify(newCards));
+        if (res.length > 0) {
+          const newCards = res.map((elem, index) => {
+            let timestamp = Date.parse(elem.publishedAt);
+            let date = new Date(timestamp);
+            let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long' });
+            let year = date.getFullYear();
+            let newDate = `${dayAndMonth}, ${year}`;
+            return {
+              dataId: index,
+              keyword: value,
+              title: elem.title,
+              text: elem.content,
+              date: newDate,
+              source: elem.source.name,
+              link: elem.url,
+              image: elem.urlToImage,
+              description: elem.description
+            };
+          });
+          setCards(newCards);
+          setCount(0);
+          localStorage.setItem('news-cards', JSON.stringify(newCards));
+        } else {
+          setCards([]);
+        }
       })
       .catch(() => {
         console.log(CARD_SEARCH_ERR);
@@ -218,7 +223,7 @@ function App() {
     return mainApi.deleteCard(id)
       .then((res) => {
         console.log(res.message);
-        const newCards = cards.map((c) => c.dataId === dataId ? {...c, isFaved: false} : c);
+        const newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
         setCards(newCards);
         localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
@@ -237,6 +242,28 @@ function App() {
     if (cards.length >= 0) {
       setCount(count + 3);
     }
+  }
+
+
+  function getSavedCards() {
+    setIsLoading(true);
+    return mainApi.getSavedCards()
+      .then((res) => {
+        setSavedCards(res.reverse());
+        // localStorage.setItem('saved-cards', JSON.stringify(res));
+      })
+      .catch((err) => {
+        if (err.toString() === 'TypeError: Failed to fetch') {
+          setLoginErrorMessage(CONNECTION_REFUSED);
+        } else {
+          err.then((msg) => {
+            setLoginErrorMessage(msg.message || SERVER_ERR);
+          });
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   return (
@@ -261,9 +288,9 @@ function App() {
                 onCardDelete={handleCardDelete}
                 count={count}
                 onShowMore={handleShowMore}
+                onSignIn={handleLoginPopupOpen}
               />
             </Route>
-
             <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
               <SavedNewsHeader
                 loggedIn={loggedIn}
@@ -271,10 +298,16 @@ function App() {
                 isPopupOpen={isPopupOpen}
                 onSignOut={handleSignOut}
                 cards={cards}
+                savedCards={savedCards}
               />
-              <SavedNews/>
+              <SavedNews
+                loggedIn={loggedIn}
+                isLoading={isLoading}
+                onCardDelete={handleCardDelete}
+                onGetCards={getSavedCards}
+                savedCards={savedCards}
+              />
             </ProtectedRoute>
-
             <Route path="*">
               <Redirect to="/"/>
             </Route>

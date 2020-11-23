@@ -51,6 +51,7 @@ function LoginPopup(
              type="password"
              name="password"
              required
+             autoComplete="on"
              placeholder="Введите пароль"
              id="login-password"
              value={values.password || ''}

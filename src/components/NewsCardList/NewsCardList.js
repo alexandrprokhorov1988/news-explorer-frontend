@@ -14,7 +14,8 @@ function NewsCardList(
     onCardAdd,
     onCardDelete,
     count,
-    onShowMore
+    onShowMore,
+    onSignIn
   }) {
 
   function handleClick() {
@@ -33,6 +34,7 @@ function NewsCardList(
                       loggedIn={loggedIn}
                       onCardAdd={onCardAdd}
                       onCardDelete={onCardDelete}
+                      onSignIn={onSignIn}
             />))
           }
         </div>

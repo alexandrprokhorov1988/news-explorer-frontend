@@ -50,6 +50,7 @@ function RegisterPopup(
              type="password"
              name="password"
              required
+             autoComplete="on"
              minLength="2"
              maxLength="200"
              placeholder="Введите пароль"

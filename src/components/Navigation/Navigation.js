@@ -22,7 +22,7 @@ function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
 
   return (
     <div className={`navigation navigation_theme_${theme} ${isOpenNav ? `navigation_type_open-${theme}` : ''}`}>
-      <div className="navigation__container">
+      <div className={`navigation__container navigation__container_theme_${theme} ${isOpenNav ? `navigation_container_open-${theme}` : ''}`}>
         <Link className={`navigation__logo navigation__logo_theme_${theme}`} to="/">NewsExplorer</Link>
         {!isPopupOpen &&
         <button onClick={handleOpen}
@@ -60,6 +60,7 @@ function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
           }
         </ul>
       </nav>
+      <div className={`navigation__bg ${isOpenNav ? 'navigation__bg_opened' : ''}`} onClick={handleOpen}/>
     </div>
   );
 }

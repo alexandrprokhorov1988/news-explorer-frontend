@@ -7,7 +7,7 @@ function NewsCard(
     urlToImage,
     alt = 'Картинка',
     _id = null,
-    dataId,
+    dataId = null,
     keyword,
     title,
     text,
@@ -18,24 +18,32 @@ function NewsCard(
     description,
     isFaved = false,
     loggedIn,
-    onCardAdd,
-    onCardDelete
+    onCardAdd = null,
+    onCardDelete,
+    onSignIn
   }) {
 
   const location = useLocation();
 
   function handleClickAdd() {
-    if (isFaved) {
+    if (!loggedIn) {
+      onSignIn();
+    } else if (isFaved) {
       onCardDelete(_id, dataId);
     } else {
       onCardAdd(dataId, keyword, title, text, date, source, link, image);
     }
   }
 
+  function handleClickDelete() {
+    onCardDelete(_id, dataId);
+  }
+
   return (
     <article className="news-card">
       {location.pathname === '/saved-news' ?
-        <button type="button" className='news-card__button news-card__button_type_delete'/> :
+        <button type="button" className='news-card__button news-card__button_type_delete'
+                onClick={handleClickDelete}/> :
         <button onClick={handleClickAdd} type="button"
                 className={`news-card__button news-card__button_type_add ${isFaved ? 'news-card__button_active' : ''}`}
         />

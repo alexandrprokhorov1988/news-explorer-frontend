@@ -25,7 +25,7 @@
 .about__text-container {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   max-width: 600px;
   width: 100%;
   grid-area: text;
