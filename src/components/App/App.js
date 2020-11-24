@@ -30,6 +30,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState(null);
   const [isFound, setIsFound] = React.useState(false);
   const [count, setCount] = React.useState(0);
+  const [searchErr, setSearchErr] = React.useState('');
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -161,7 +162,8 @@ function App() {
     setIsLoading(true);
     setIsFound(true);
     return newsApi.getSearchCardsResults(value)
-      .then((res) => {
+      .then((data) => {
+        const res = data.articles;
         if (res.length > 0) {
           const newCards = res.map((elem, index) => {
             let timestamp = Date.parse(elem.publishedAt);
@@ -189,7 +191,7 @@ function App() {
         }
       })
       .catch(() => {
-        console.log(CARD_SEARCH_ERR);
+        setSearchErr(CARD_SEARCH_ERR);
       })
       .finally(() => {
         setIsLoading(false);
@@ -295,6 +297,7 @@ function App() {
                 count={count}
                 onShowMore={handleShowMore}
                 onSignIn={handleLoginPopupOpen}
+                searchErr={searchErr}
               />
             </Route>
             <ProtectedRoute

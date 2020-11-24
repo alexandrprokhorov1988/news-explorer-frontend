@@ -15,7 +15,8 @@ function NewsCardList(
     onCardDelete,
     count,
     onShowMore,
-    onSignIn
+    onSignIn,
+    searchErr
   }) {
 
   function handleClick() {
@@ -26,27 +27,31 @@ function NewsCardList(
     <>
       {isFound &&
       <section className="news-card-list">
-        <h2 className="news-card-list__title">Результаты поиска</h2>
-        <div className="news-card-list__container">
-          {isLoading ? <Preloader/> : cards.slice(0, count + 3).map((card) => (
-            <NewsCard key={card.dataId}
-                      {...card}
-                      loggedIn={loggedIn}
-                      onCardAdd={onCardAdd}
-                      onCardDelete={onCardDelete}
-                      onSignIn={onSignIn}
-            />))
-          }
-        </div>
-        {(count < cards.length - 1) &&
-        <button
-          type="button"
-          className="news-card-list__button-more"
-          onClick={handleClick}>
-          Показать еще
-        </button>
+        {searchErr ? <p className="news-card-list__error">{searchErr}</p> :
+          <>
+            {cards.length > 0 && <h2 className="news-card-list__title">Результаты поиска</h2>}
+            <div className="news-card-list__container">
+              {isLoading ? <Preloader/> : cards.slice(0, count + 3).map((card) => (
+                <NewsCard key={card.dataId}
+                          {...card}
+                          loggedIn={loggedIn}
+                          onCardAdd={onCardAdd}
+                          onCardDelete={onCardDelete}
+                          onSignIn={onSignIn}
+                />))
+              }
+            </div>
+            {(count < cards.length - 1) &&
+            <button
+              type="button"
+              className="news-card-list__button-more"
+              onClick={handleClick}>
+              Показать еще
+            </button>
+            }
+            {cards.length === 0 && <NotFoundResults/>}
+          </>
         }
-        {cards.length === 0 && <NotFoundResults/>}
       </section>
       }
     </>

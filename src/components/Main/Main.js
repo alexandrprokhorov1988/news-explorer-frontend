@@ -13,7 +13,8 @@ function Main(
     onCardDelete,
     count,
     onShowMore,
-    onSignIn
+    onSignIn,
+    searchErr
   }) {
 
   return (
@@ -29,6 +30,7 @@ function Main(
         count={count}
         onShowMore={onShowMore}
         onSignIn={onSignIn}
+        searchErr={searchErr}
       />
       <About/>
     </>
