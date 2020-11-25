@@ -14,6 +14,7 @@ import newsApi from "../../utils/NewsApi";
 import {CARD_SEARCH_ERR, CONNECTION_REFUSED, SERVER_ERR} from "../../utils/constants";
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ErrorMessagePopup from '../../components/ErrorMessagePopup/ErrorMessagePopup';
 
 function App() {
   const history = useHistory();
@@ -27,6 +28,7 @@ function App() {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [loginErrorMessage, setLoginErrorMessage] = React.useState(null);
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
+  const [errorMessage, setErrorMessage] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState(null);
   const [isFound, setIsFound] = React.useState(false);
   const [count, setCount] = React.useState(0);
@@ -97,7 +99,8 @@ function App() {
           console.log(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
-            console.log(msg.message || SERVER_ERR);
+            setErrorMessage(msg.message || SERVER_ERR);
+            // console.log(msg.message || SERVER_ERR);
           });
         }
       });
@@ -154,7 +157,8 @@ function App() {
         history.push('/');
       })
       .catch(() => {
-        console.log(SERVER_ERR);
+        setErrorMessage(SERVER_ERR);
+        // console.log(SERVER_ERR);
       })
   }
 
@@ -212,10 +216,12 @@ function App() {
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          console.log(CONNECTION_REFUSED);
+          setErrorMessage(CONNECTION_REFUSED);
+          // console.log(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
-            console.log(msg.message || SERVER_ERR);
+            // console.log(msg.message || SERVER_ERR);
+            setErrorMessage(msg.message || SERVER_ERR);
           });
         }
       })
@@ -239,10 +245,12 @@ function App() {
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          console.log(CONNECTION_REFUSED);
+          setErrorMessage(CONNECTION_REFUSED);
+          // console.log(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
-            console.log(msg.message || SERVER_ERR);
+            setErrorMessage(msg.message || SERVER_ERR);
+            // console.log(msg.message || SERVER_ERR);
           });
         }
       })
@@ -252,6 +260,10 @@ function App() {
     if (cards.length >= 0) {
       setCount(count + 3);
     }
+  }
+
+  function handleSetErrMessage() {
+    setErrorMessage('');
   }
 
   function getSavedCards() {
@@ -347,6 +359,15 @@ function App() {
             onClose={closeAllPopups}
             onButtonClick={handleLoginPopupOpen}
           />
+
+          {errorMessage &&
+          <ErrorMessagePopup
+            errMessage={errorMessage}
+            onSetErrorMessage={handleSetErrMessage}
+          />
+          }
+
+
         </main>
       </CurrentUserContext.Provider>
     </div>

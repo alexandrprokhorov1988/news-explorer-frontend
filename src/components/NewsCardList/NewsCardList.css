@@ -19,13 +19,13 @@
   padding-top: 80px;
 }
 
-.news-card-list__error{
+.news-card-list__error {
   padding: 0;
   margin: 0 auto;
   font-size: 18px;
   line-height: 24px;
   padding-top: 80px;
-  max-width: 50%;
+  width: calc(100% - 20%);
   text-align: center;
   color: #B6BCBF;
 }
@@ -70,6 +70,10 @@
     max-width: 688px;
     width: calc(100% - 10.4%);
     padding-bottom: 50px;
+  }
+
+  .news-card-list__error {
+    width: 100%;
   }
 
   .news-card-list__title {

@@ -1,6 +1,7 @@
 import React from 'react';
 import './SearchForm.css';
 import {SEARCH_ERR} from '../../utils/constants';
+
 function SearchForm({ onSearch }) {
   const [value, setValue] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');

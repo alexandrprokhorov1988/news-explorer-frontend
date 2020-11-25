@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children, ...props }) => {
     if (!props.loggedIn) {
       props.onRedirect();
     }
-  }, []);  //todo
+  }, []);
 
   return (
     <Route>
