@@ -169,11 +169,11 @@ function App() {
         const res = data.articles;
         if (res.length > 0) {
           const newCards = res.map((elem, index) => {
-            let timestamp = Date.parse(elem.publishedAt);
-            let date = new Date(timestamp);
-            let dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long' });
-            let year = date.getFullYear();
-            let newDate = `${dayAndMonth}, ${year}`;
+            const timestamp = Date.parse(elem.publishedAt);
+            const date = new Date(timestamp);
+            const dayAndMonth = date.toLocaleString('default', { day: 'numeric', month: 'long' });
+            const year = date.getFullYear();
+            const newDate = `${dayAndMonth}, ${year}`;
             return {
               dataId: index,
               keyword: value,
@@ -230,17 +230,16 @@ function App() {
     return mainApi.deleteCard(id)
       .then((res) => {
         setErrorMessage(res.message);
+        let newCards;
         if (type === 'news') {
-          const newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
-          setCards(newCards);
-          localStorage.setItem('news-cards', JSON.stringify(newCards));
+          newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
         } else if (type === 'saved') {
           const newSavedCards = savedCards.filter((c) => c._id !== id);
-          const newCards = cards.map((c) => c._id === id ? { ...c, isFaved: false } : c);
-          setCards(newCards);
+          newCards = cards.map((c) => c._id === id ? { ...c, isFaved: false } : c);
           setSavedCards(newSavedCards);
         }
-        return false;
+        setCards(newCards);
+        localStorage.setItem('news-cards', JSON.stringify(newCards));
       })
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
