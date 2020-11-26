@@ -3,18 +3,26 @@ import {Redirect, Route} from 'react-router-dom';
 import {AUTH_ERR} from "../../utils/constants";
 
 const ProtectedRoute = ({ children, ...props }) => {
+  const storage = sessionStorage.getItem('news-app');
 
   React.useEffect(() => {
-    if (!props.loggedIn) {
+    if (!props.loggedIn && !storage) {
       props.onRedirect();
       props.onRedirectMessage(AUTH_ERR);
     }
   }, []);
 
+  const redirect = () => {
+    if (!storage) {
+      return <Redirect to='/'/>;
+    }
+    return false;
+  };
+
   return (
     <Route>
       {
-        () => props.loggedIn ? children : <Redirect to='/'/>
+        () => props.loggedIn ? children : redirect()
       }
     </Route>
   )

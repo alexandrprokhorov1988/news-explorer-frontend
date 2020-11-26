@@ -92,6 +92,7 @@ function App() {
           });
           setLoggedIn(true);
           setLoginErrorMessage(null);
+          sessionStorage.setItem('news-app', '1'); //todo
         }
       })
       .catch(err => {
@@ -154,6 +155,7 @@ function App() {
       .then((res) => {
         setErrorMessage(res.message);
         setLoggedIn(false);
+        sessionStorage.clear();
         history.push('/');
       })
       .catch(() => {
