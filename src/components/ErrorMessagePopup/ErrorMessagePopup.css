@@ -10,7 +10,7 @@
   -webkit-transition: visibility .5s, opacity .5s;
   -o-transition: visibility .5s, opacity .5s;
   transition: visibility .5s, opacity .5s;
-  box-shadow: 3px 7px 20px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 10px 11px 50px 0 rgba(0, 0, 0, 0.44);
   background-color: #555;
 }
 

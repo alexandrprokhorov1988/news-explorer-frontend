@@ -90,13 +90,14 @@ function App() {
             id: res._id,
             name: res.name,
           });
-          setLoginErrorMessage(null);
           setLoggedIn(true);
+          setLoginErrorMessage(null);
         }
       })
       .catch(err => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          console.log(CONNECTION_REFUSED);
+          // console.log(CONNECTION_REFUSED);
+          setErrorMessage(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
             setErrorMessage(msg.message || SERVER_ERR);
@@ -152,7 +153,8 @@ function App() {
   function handleSignOut() {
     return mainApi.signOut()
       .then((res) => {
-        console.log(res.message);
+        setErrorMessage(res.message);
+        // console.log(res.message);
         setLoggedIn(false);
         history.push('/');
       })
@@ -202,8 +204,10 @@ function App() {
       })
   }
 
-  function handleCardAdd(dataId, keyword, title, text, date, source, link, image) {
-    return mainApi.setNewCard(keyword, title, text, date, source, link, image)
+  function handleCardAdd({dataId, keyword, title, text, date, source, link, image}) {
+    const formatterdKeyword = keyword[0].toUpperCase() + keyword.slice(1).toLowerCase();
+
+    return mainApi.setNewCard(formatterdKeyword, title, text, date, source, link, image)
       .then((newCard) => {
         const obj = {
           ...newCard,
@@ -230,7 +234,8 @@ function App() {
   function handleCardDelete(id, dataId, type) {
     return mainApi.deleteCard(id)
       .then((res) => {
-        console.log(res.message);
+        setErrorMessage(res.message);
+        // console.log(res.message);
         if (type === 'news') {
           const newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
           setCards(newCards);
@@ -313,8 +318,8 @@ function App() {
               />
             </Route>
             <ProtectedRoute
-              path="/saved-news"
               loggedIn={loggedIn}
+              path="/saved-news"
               onRedirect={handleLoginPopupOpen}
             >
               <SavedNewsHeader
@@ -359,15 +364,12 @@ function App() {
             onClose={closeAllPopups}
             onButtonClick={handleLoginPopupOpen}
           />
-
           {errorMessage &&
           <ErrorMessagePopup
             errMessage={errorMessage}
             onSetErrorMessage={handleSetErrMessage}
           />
           }
-
-
         </main>
       </CurrentUserContext.Provider>
     </div>

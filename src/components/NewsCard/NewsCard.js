@@ -31,7 +31,7 @@ function NewsCard(
     } else if (isFaved) {
       onCardDelete(_id, dataId, 'news');
     } else {
-      onCardAdd(dataId, keyword, title, text, date, source, link, image);
+      onCardAdd({ dataId, keyword, title, text, date, source, link, image });
     }
   }
 

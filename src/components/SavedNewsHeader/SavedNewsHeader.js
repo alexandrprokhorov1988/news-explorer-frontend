@@ -25,12 +25,13 @@ function SavedNewsHeader(
       });
       setCategory(arrNames);
     }
+
     getPopularCategory();
   }, [savedCards]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const getNumbersExtensions = () => {
-      const number = category.length-2;
+      const number = category.length - 2;
       const titles = ['-ой другой', '-м другим', '-и другим'];
       const cases = [2, 0, 1, 1, 1, 2];
       return titles[
@@ -56,14 +57,19 @@ function SavedNewsHeader(
         <h2 className="saved-news-header__title">
           {`${currentUser.name}, у вас ${savedCards.length} сохранённых статей`}
         </h2>
+        {category.length > 0 &&
         <p className="saved-news-header__subtitle">
-          По ключевым словам: <span className="saved-news-header__span-accent"> {category[0] || ''}</span>,
-          <span className="saved-news-header__span-accent"> {category[1] || ''}</span> и
-          {category.length <= 3 ?
+          По ключевым словам:
+          <span className="saved-news-header__span-accent"> {category[0] || ''}</span>
+          {category.length > 1 && ','}
+          <span className="saved-news-header__span-accent"> {category[1] || ''}</span>
+          {category.length >= 3 && ' и'}
+          {category.length === 3 ?
             <span className="saved-news-header__span-accent"> {category[2]}</span> :
             <span className="saved-news-header__span-accent"> {`${category.length - 2}${extension}`}</span>
           }
         </p>
+        }
       </div>
     </header>
   );

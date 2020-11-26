@@ -40,7 +40,6 @@ function RegisterPopup(
              name="email"
              required
              placeholder="Введите свой email"
-             id="register-email"
              value={values.email || ''}
              onChange={handleChange}
       />
@@ -54,7 +53,6 @@ function RegisterPopup(
              minLength="2"
              maxLength="200"
              placeholder="Введите пароль"
-             id="register-password"
              value={values.password || ''}
              onChange={handleChange}
       />

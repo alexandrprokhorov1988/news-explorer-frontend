@@ -41,7 +41,6 @@ function LoginPopup(
              name="email"
              required
              placeholder="Введите свой email"
-             id="login-email"
              value={values.email || ''}
              onChange={handleChange}
       />
@@ -53,7 +52,6 @@ function LoginPopup(
              required
              autoComplete="on"
              placeholder="Введите пароль"
-             id="login-password"
              value={values.password || ''}
              onChange={handleChange}
       />

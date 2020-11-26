@@ -14,7 +14,7 @@ function SavedNews(
 
   React.useEffect(() => {
     onGetCards();
-  }, []); //todo []
+  }, []);
 
   return (
     <section className="saved-news">
