@@ -96,12 +96,11 @@ function App() {
       })
       .catch(err => {
         if (err.toString() === 'TypeError: Failed to fetch') {
-          // console.log(CONNECTION_REFUSED);
           setErrorMessage(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
-            setErrorMessage(msg.message || SERVER_ERR);
-            // console.log(msg.message || SERVER_ERR);
+            // setErrorMessage(msg.message || SERVER_ERR);
+            console.log(msg.message || SERVER_ERR);
           });
         }
       });
@@ -154,13 +153,11 @@ function App() {
     return mainApi.signOut()
       .then((res) => {
         setErrorMessage(res.message);
-        // console.log(res.message);
         setLoggedIn(false);
         history.push('/');
       })
       .catch(() => {
         setErrorMessage(SERVER_ERR);
-        // console.log(SERVER_ERR);
       })
   }
 
@@ -221,10 +218,8 @@ function App() {
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
           setErrorMessage(CONNECTION_REFUSED);
-          // console.log(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
-            // console.log(msg.message || SERVER_ERR);
             setErrorMessage(msg.message || SERVER_ERR);
           });
         }
@@ -235,7 +230,6 @@ function App() {
     return mainApi.deleteCard(id)
       .then((res) => {
         setErrorMessage(res.message);
-        // console.log(res.message);
         if (type === 'news') {
           const newCards = cards.map((c) => c.dataId === dataId ? { ...c, isFaved: false } : c);
           setCards(newCards);
@@ -251,11 +245,9 @@ function App() {
       .catch((err) => {
         if (err.toString() === 'TypeError: Failed to fetch') {
           setErrorMessage(CONNECTION_REFUSED);
-          // console.log(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
             setErrorMessage(msg.message || SERVER_ERR);
-            // console.log(msg.message || SERVER_ERR);
           });
         }
       })
@@ -267,8 +259,8 @@ function App() {
     }
   }
 
-  function handleSetErrMessage() {
-    setErrorMessage('');
+  function handleSetErrMessage(msg = '') {
+    setErrorMessage(msg);
   }
 
   function getSavedCards() {
@@ -321,6 +313,7 @@ function App() {
               loggedIn={loggedIn}
               path="/saved-news"
               onRedirect={handleLoginPopupOpen}
+              onRedirectMessage={handleSetErrMessage}
             >
               <SavedNewsHeader
                 loggedIn={loggedIn}
