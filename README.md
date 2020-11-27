@@ -5,14 +5,12 @@
 * Описание
 * Инструкция
 * Технологии
-* Примечания
-* Планы по доработке
 
 #### Описание
 * [Ссылка на макет в Figma](https://www.figma.com/file/Dhl21eRzzbFMBe0DU9SglF/Diploma-WEB-v2.0-(for-students)?node-id=1%3A243)
 
 #### Инструкция
-* [Ссылка на проект](https://alexandrprokhorov1988.github.io/news-explorer-frontend/)
+* [Ссылка на проект](https://apexpress.students.nomoreparties.co/)
 
 #### Технологии
 * Спецификации HTML, CSS.
@@ -22,10 +20,4 @@
 * Grid
 * Flex 
 * Live валидация форм
-* React(CRA)
-
-#### Примечания
-  
-
-#### Планы по доработке
-  Написать логику
+* React
