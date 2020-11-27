@@ -92,7 +92,7 @@ function App() {
           });
           setLoggedIn(true);
           setLoginErrorMessage(null);
-          localStorage.setItem('news-app', '1'); //todo
+          localStorage.setItem('news-app', '1');
         }
       })
       .catch(err => {
@@ -295,6 +295,7 @@ function App() {
                 onSignOut={handleSignOut}
                 isPopupOpen={isPopupOpen}
                 onSearch={handleSearch}
+                isLoading={isLoading}
               />
               <Main
                 loggedIn={loggedIn}

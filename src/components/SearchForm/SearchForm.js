@@ -2,7 +2,7 @@ import React from 'react';
 import './SearchForm.css';
 import {SEARCH_ERR} from '../../utils/constants';
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, isLoading }) {
   const [value, setValue] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');
 
@@ -47,6 +47,7 @@ function SearchForm({ onSearch }) {
              type="submit"
              name="submit"
              value="Искать"
+             disabled={isLoading}
       />
     </form>
   );

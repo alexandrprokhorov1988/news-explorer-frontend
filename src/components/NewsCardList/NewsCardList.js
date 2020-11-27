@@ -3,6 +3,7 @@ import './NewsCardList.css';
 import NotFoundResults from '../../components/NotFoundResults/NotFoundResults';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import Preloader from '../../components/Preloader/Preloader';
+import {CARDS_IN_A_ROW} from "../../utils/config";
 
 function NewsCardList(
   {
@@ -31,7 +32,7 @@ function NewsCardList(
           <>
             {cards.length > 0 && <h2 className="news-card-list__title">Результаты поиска</h2>}
             <div className="news-card-list__container">
-              {isLoading ? <Preloader/> : cards.slice(0, count + 3).map((card) => (
+              {isLoading ? <Preloader/> : cards.slice(0, count + CARDS_IN_A_ROW).map((card) => (
                 <NewsCard key={card.dataId}
                           {...card}
                           loggedIn={loggedIn}

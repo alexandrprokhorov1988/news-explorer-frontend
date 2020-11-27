@@ -12,8 +12,11 @@ const BASE_URL_API = NODE_ENV === 'production' ?
 
 const API_KEY = '0aba79eaaa544209a131c1cedbfddf72';
 
+const CARDS_IN_A_ROW = 3;
+
 export {
   BASE_URL,
   BASE_URL_API,
-  API_KEY
+  API_KEY,
+  CARDS_IN_A_ROW
 };

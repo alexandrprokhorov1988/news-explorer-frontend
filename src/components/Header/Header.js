@@ -3,7 +3,7 @@ import './Header.css';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Navigation from '../../components/Navigation/Navigation';
 
-function Header({ loggedIn, onSignIn, onSignOut, isPopupOpen, onSearch }) {
+function Header({ loggedIn, onSignIn, onSignOut, isPopupOpen, onSearch, isLoading }) {
 
   return (
     <header className="header">
@@ -21,6 +21,7 @@ function Header({ loggedIn, onSignIn, onSignOut, isPopupOpen, onSearch }) {
         </p>
         <SearchForm
           onSearch={onSearch}
+          isLoading={isLoading}
         />
       </div>
     </header>
