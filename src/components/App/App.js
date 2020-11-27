@@ -92,7 +92,7 @@ function App() {
           });
           setLoggedIn(true);
           setLoginErrorMessage(null);
-          sessionStorage.setItem('news-app', '1'); //todo
+          localStorage.setItem('news-app', '1'); //todo
         }
       })
       .catch(err => {
@@ -100,7 +100,6 @@ function App() {
           setErrorMessage(CONNECTION_REFUSED);
         } else {
           err.then((msg) => {
-            // setErrorMessage(msg.message || SERVER_ERR);
             console.log(msg.message || SERVER_ERR);
           });
         }
@@ -155,7 +154,7 @@ function App() {
       .then((res) => {
         setErrorMessage(res.message);
         setLoggedIn(false);
-        sessionStorage.clear();
+        localStorage.removeItem('news-app');
         history.push('/');
       })
       .catch(() => {

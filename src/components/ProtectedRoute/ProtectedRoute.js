@@ -3,7 +3,7 @@ import {Redirect, Route} from 'react-router-dom';
 import {AUTH_ERR} from "../../utils/constants";
 
 const ProtectedRoute = ({ children, ...props }) => {
-  const storage = sessionStorage.getItem('news-app');
+  const storage = localStorage.getItem('news-app');
 
   React.useEffect(() => {
     if (!props.loggedIn && !storage) {
