@@ -10,7 +10,7 @@ class NewsApi {
     const date = new Date();
     const dateFrom = date.toISOString();
     const dateTo = new Date(date.setDate(date.getDate() - 7)).toISOString();
-    return fetch(`${this._baseUrl}?q=${value}&pageSize=10&from=${dateFrom}&to=${dateTo}&apiKey=${this._apiKey}`, {})
+    return fetch(`${this._baseUrl}?q=${value}&pageSize=100&from=${dateFrom}&to=${dateTo}&apiKey=${this._apiKey}`, {})
       .then((res) => {
         if (res.ok) {
           return res.json();

@@ -64,9 +64,10 @@ function SavedNewsHeader(
           {category.length > 1 && ','}
           <span className="saved-news-header__span-accent"> {category[1] || ''}</span>
           {category.length >= 3 && ' и'}
-          {category.length === 3 ?
-            <span className="saved-news-header__span-accent"> {category[2]}</span> :
-            <span className="saved-news-header__span-accent"> {`${category.length - 2}${extension}`}</span>
+          {category.length === 3 &&
+          <span className="saved-news-header__span-accent"> {category[2]}</span>}
+          {category.length > 3 &&
+          <span className="saved-news-header__span-accent"> {`${category.length - 2}${extension}`}</span>
           }
         </p>
         }
