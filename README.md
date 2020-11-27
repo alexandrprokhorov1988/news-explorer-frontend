@@ -7,6 +7,12 @@
 * Технологии
 
 #### Описание
+Проект News Explorer представляет собой SPA сервис
+для поиска новостей и сохранения их в личном кабинете. 
+Данный репозиторий является клиентской частью написанной на REACT.
+Само приложение выполнено на стеке MERN.
+
+* [Ссылка на бэкенд репозиторий](https://github.com/alexandrprokhorov1988/news-explorer-api)
 * [Ссылка на макет в Figma](https://www.figma.com/file/Dhl21eRzzbFMBe0DU9SglF/Diploma-WEB-v2.0-(for-students)?node-id=1%3A243)
 
 #### Инструкция
