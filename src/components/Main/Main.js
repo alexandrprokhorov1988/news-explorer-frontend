@@ -14,7 +14,8 @@ function Main(
     count,
     onShowMore,
     onSignIn,
-    searchErr
+    searchErr,
+    isLoadingAdd,
   }) {
 
   return (
@@ -22,6 +23,7 @@ function Main(
       <NewsCardList
         loggedIn={loggedIn}
         isLoading={isLoading}
+        isLoadingAdd={isLoadingAdd}
         cards={cards}
         isFound={isFound}
         category={category}

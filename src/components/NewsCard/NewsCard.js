@@ -20,7 +20,8 @@ function NewsCard(
     loggedIn,
     onCardAdd = null,
     onCardDelete,
-    onSignIn
+    onSignIn,
+    isLoadingAdd,
   }) {
 
   const location = useLocation();
@@ -42,9 +43,13 @@ function NewsCard(
   return (
     <article className="news-card">
       {location.pathname === '/saved-news' ?
-        <button type="button" className='news-card__button news-card__button_type_delete'
+        <button type="button"
+                disabled={isLoadingAdd}
+                className='news-card__button news-card__button_type_delete'
                 onClick={handleClickDelete}/> :
-        <button onClick={handleClickAdd} type="button"
+        <button onClick={handleClickAdd}
+                disabled={isLoadingAdd}
+                type="button"
                 className={`news-card__button news-card__button_type_add ${isFaved ? 'news-card__button_active' : ''}`}
         />
       }

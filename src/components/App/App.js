@@ -33,6 +33,7 @@ function App() {
   const [isFound, setIsFound] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const [searchErr, setSearchErr] = React.useState('');
+  const [isLoadingAdd, setIsLoadingAdd] = React.useState(false);
 
   React.useEffect(() => {
     if (isLoginPopupOpen || isConfirmPopupOpen || isRegisterPopupOpen) {
@@ -204,6 +205,7 @@ function App() {
 
   function handleCardAdd({dataId, keyword, title, text, date, source, link, image}) {
     const formatterdKeyword = keyword[0].toUpperCase() + keyword.slice(1).toLowerCase();
+    setIsLoadingAdd(true);
 
     return mainApi.setNewCard(formatterdKeyword, title, text, date, source, link, image)
       .then((newCard) => {
@@ -225,9 +227,14 @@ function App() {
           });
         }
       })
+      .finally(() => {
+        setIsLoadingAdd(false);
+      })
   }
 
   function handleCardDelete(id, dataId, type) {
+    setIsLoadingAdd(true);
+
     return mainApi.deleteCard(id)
       .then((res) => {
         setErrorMessage(res.message);
@@ -250,6 +257,9 @@ function App() {
             setErrorMessage(msg.message || SERVER_ERR);
           });
         }
+      })
+      .finally(() => {
+        setIsLoadingAdd(false);
       })
   }
 
@@ -300,6 +310,7 @@ function App() {
               <Main
                 loggedIn={loggedIn}
                 isLoading={isLoading}
+                isLoadingAdd={isLoadingAdd}
                 cards={cards}
                 isFound={isFound}
                 onCardAdd={handleCardAdd}

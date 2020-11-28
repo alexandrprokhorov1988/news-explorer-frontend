@@ -9,6 +9,7 @@ function SavedNewsHeader(
   const currentUser = React.useContext(CurrentUserContext);
   const [category, setCategory] = React.useState([]);
   const [extension, setExtension] = React.useState('');
+  const [numArticles, setNumArticles] = React.useState('');
 
   React.useEffect(() => {
     function getPopularCategory() {
@@ -30,17 +31,21 @@ function SavedNewsHeader(
   }, [savedCards]);
 
   React.useEffect(() => {
-    const getNumbersExtensions = () => {
-      const number = category.length - 2;
-      const titles = ['-ой другой', '-м другим', '-и другим'];
-      const cases = [2, 0, 1, 1, 1, 2];
+    const getNumbersExtensions = (n, titles) => {
       return titles[
-        (number % 100 > 4 && number % 100 < 20) ?
-          2 :
-          cases[(number % 10 < 5) ? number % 10 : 5]
+        (n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2)
         ];
     };
-    setExtension(getNumbersExtensions());
+
+    setExtension(getNumbersExtensions(
+      category.length - 2,
+      ['-ой другой', '-м другим', '-и другим']
+    ));
+
+    setNumArticles(getNumbersExtensions(
+      savedCards.length,
+      ['сохраненная статья', 'сохраненные статьи', 'сохраненных статей']
+    ));
   }, [category]);
 
   return (
@@ -55,7 +60,7 @@ function SavedNewsHeader(
       <div className="saved-news-header__container">
         <p className="saved-news-header__text">Сохранённые статьи</p>
         <h2 className="saved-news-header__title">
-          {`${currentUser.name}, у вас ${savedCards.length} сохранённых статей`}
+          {`${currentUser.name}, у вас ${savedCards.length} ${numArticles}`}
         </h2>
         {category.length > 0 &&
         <p className="saved-news-header__subtitle">
