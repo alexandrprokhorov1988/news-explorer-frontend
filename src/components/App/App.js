@@ -15,6 +15,7 @@ import {CARD_SEARCH_ERR, CONNECTION_REFUSED, SERVER_ERR} from "../../utils/const
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ErrorMessagePopup from '../../components/ErrorMessagePopup/ErrorMessagePopup';
+import {CARDS_IN_A_ROW} from "../../utils/config";
 
 function App() {
   const history = useHistory();
@@ -155,8 +156,9 @@ function App() {
       .then((res) => {
         setErrorMessage(res.message);
         setLoggedIn(false);
-        localStorage.removeItem('news-app');
+        localStorage.clear();
         history.push('/');
+        window.location.reload();
       })
       .catch(() => {
         setErrorMessage(SERVER_ERR);
@@ -180,7 +182,7 @@ function App() {
               dataId: index,
               keyword: value,
               title: elem.title,
-              text: elem.content,
+              text: elem.content || 'Text',
               date: newDate,
               source: elem.source.name,
               link: elem.url,
@@ -265,7 +267,7 @@ function App() {
 
   function handleShowMore() {
     if (cards.length >= 0) {
-      setCount(count + 3);
+      setCount(count + CARDS_IN_A_ROW);
     }
   }
 

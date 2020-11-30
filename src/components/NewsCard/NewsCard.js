@@ -1,6 +1,7 @@
 import React from 'react';
 import './NewsCard.css';
 import {useLocation} from 'react-router-dom';
+import defaultImg from '../../images/onload-err-default-img.png';
 
 function NewsCard(
   {
@@ -25,6 +26,11 @@ function NewsCard(
   }) {
 
   const location = useLocation();
+  const [img, setImg] = React.useState(image);
+
+  function err() {
+    setImg(defaultImg);
+  }
 
   function handleClickAdd() {
     if (!loggedIn) {
@@ -69,7 +75,7 @@ function NewsCard(
       >
         {location.pathname === '/saved-news' &&
         <span className="news-card__category news-card__category_active">{keyword}</span>}
-        <img className="news-card__img" src={image} alt={alt}/>
+        <img className="news-card__img" src={img || ''} onError={err} alt={alt}/>
         <div className="news-card__description-container">
           <div>
             <p className="news-card__date">{date}</p>

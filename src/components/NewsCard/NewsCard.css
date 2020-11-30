@@ -1,6 +1,8 @@
 .news-card {
   position: relative;
   transition: all ease 0.5s;
+  max-width: 100%;
+  width: 100%;
 }
 
 .news-card:hover {
@@ -42,6 +44,10 @@
 }
 
 .news-card__button_active {
+  background-image: url(../../images/button-add-icon-marked.svg);
+}
+
+.news-card__button_active:hover{
   background-image: url(../../images/button-add-icon-marked.svg);
 }
 
@@ -143,9 +149,8 @@
   width: 100%;
   height: 576px;
   background: #FFFFFF;
-  transition: all ease 0.5s;
   align-items: center;
-  max-width: 400px;
+  max-width: 100%;
 }
 
 .news-card__text {

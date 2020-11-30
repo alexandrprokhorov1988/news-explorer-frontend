@@ -14,9 +14,12 @@ const API_KEY = '0aba79eaaa544209a131c1cedbfddf72';
 
 const CARDS_IN_A_ROW = 3;
 
+const DATE_TO = 7;
+
 export {
   BASE_URL,
   BASE_URL_API,
   API_KEY,
-  CARDS_IN_A_ROW
+  CARDS_IN_A_ROW,
+  DATE_TO,
 };

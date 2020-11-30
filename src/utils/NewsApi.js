@@ -1,4 +1,4 @@
-import {API_KEY, BASE_URL_API} from "./config";
+import {API_KEY, BASE_URL_API, DATE_TO} from "./config";
 
 class NewsApi {
   constructor({ baseUrl, apiKey }) {
@@ -9,7 +9,7 @@ class NewsApi {
   getSearchCardsResults(value) {
     const date = new Date();
     const dateFrom = date.toISOString();
-    const dateTo = new Date(date.setDate(date.getDate() - 7)).toISOString();
+    const dateTo = new Date(date.setDate(date.getDate() - DATE_TO)).toISOString();
     return fetch(`${this._baseUrl}?q=${value}&pageSize=100&from=${dateFrom}&to=${dateTo}&apiKey=${this._apiKey}`, {})
       .then((res) => {
         if (res.ok) {
