@@ -3,10 +3,12 @@ import './Navigation.css';
 import logoWhite from '../../images/logout-white.svg';
 import logoBlack from '../../images/logout-black.svg';
 import {Link, useLocation} from 'react-router-dom';
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
-function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
+function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     if (isPopupOpen) {
@@ -20,13 +22,13 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpe
 
   return (
     <div className={`navigation navigation_theme_${theme} ${isOpenNav ? `navigation_type_open-${theme}` : ''}`}>
-      <div className="navigation__container">
+      <div className={`navigation__container navigation__container_theme_${theme} ${isOpenNav ? `navigation_container_open-${theme}` : ''}`}>
         <Link className={`navigation__logo navigation__logo_theme_${theme}`} to="/">NewsExplorer</Link>
         {!isPopupOpen &&
         <button onClick={handleOpen}
-          className={`navigation__button navigation__button_type_${isOpenNav ? 'open' : 'close'}-${theme}`}/>
+                className={`navigation__button navigation__button_type_${isOpenNav ? 'open' : 'close'}-${theme}`}/>
         }
-          </div>
+      </div>
       <nav className={`nav nav_theme_${theme} ${isOpenNav ? 'nav_opened' : ''}`}>
         <ul className="nav__links">
           <li className="nav__list">
@@ -43,7 +45,7 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpe
               </li>
               <li className="nav__list">
                 <button onClick={onSignOut} className={`nav__button nav__button_theme_${theme}`}>
-                  {userData ? userData.name : 'Грета'}
+                  {currentUser ? currentUser.name : ''}
                   <img className="nav__img"
                        src={theme === 'main' ? logoWhite : logoBlack}
                        alt="Выход"/>
@@ -58,6 +60,7 @@ function Navigation({ userData, loggedIn, onSignIn, onSignOut, theme, isPopupOpe
           }
         </ul>
       </nav>
+      <div className={`navigation__bg ${isOpenNav ? 'navigation__bg_opened' : ''}`} onClick={handleOpen}/>
     </div>
   );
 }

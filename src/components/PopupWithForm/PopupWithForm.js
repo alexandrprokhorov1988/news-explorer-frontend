@@ -1,7 +1,15 @@
 import React from 'react';
 import './PopupWithForm.css';
 
-function PopupWithForm({ isOpen, onClose, onSubmit, title, children, onButtonClick, isRegisterPopupOpen }) {
+function PopupWithForm(
+  { isOpen,
+    onClose,
+    onSubmit,
+    title,
+    children,
+    onButtonClick,
+    linkTo
+  }) {
 
   function stopBubble(evt) {
     evt.stopPropagation();
@@ -20,7 +28,7 @@ function PopupWithForm({ isOpen, onClose, onSubmit, title, children, onButtonCli
         <button type="button"
                 className="popup__change-button"
                 onClick={onButtonClick}>
-          {!isRegisterPopupOpen ? 'Зарегистрироваться' : 'Войти'}
+          {linkTo === 'login' ? 'Зарегистрироваться' : 'Войти'}
         </button>
       </div>
     </div>

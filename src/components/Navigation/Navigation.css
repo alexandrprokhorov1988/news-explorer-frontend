@@ -11,9 +11,33 @@
   box-sizing: border-box;
   align-items: center;
   background: rgba(255, 255, 255, 0.01);
-  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
   padding-right: 7.2%;
   padding-left: 7.2%;
+  z-index: 50;
+}
+
+.navigation_theme_main {
+  background: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.navigation_theme_saved-news {
+  background: #FFFFFF;
+  box-shadow: inset 0 -1px 0 #D1D2D6;
+}
+
+.navigation__bg {
+  visibility: hidden;
+  position: fixed;
+  background: #000000;
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  top: 0;
+  transition: visibility ease .5s;
 }
 
 .navigation__container {
@@ -24,14 +48,6 @@
   z-index: 10;
   padding-top: 30px;
   padding-bottom: 26px;
-}
-
-.navigation_theme_main {
-  background: rgba(196, 196, 196, 0.01);
-}
-
-.navigation_theme_saved-news {
-  background: #FFFFFF;
 }
 
 .navigation__logo {
@@ -208,6 +224,29 @@
 
   .navigation_type_open-main {
     background: #1A1B22;
+    border-radius: 16px;
+  }
+
+  .navigation__container_theme_main {
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .navigation__container_theme_saved-news {
+    box-shadow: inset 0 -1px 0 #D1D2D6;
+  }
+
+  .navigation_container_open-main {
+    background: #1A1B22;
+  }
+
+  .navigation_container_open-saved-news {
+    background: #ffffff;
+  }
+
+  .navigation__bg_opened {
+    visibility: visible;
+    transition: visibility ease .5s;
+    opacity: 0.5;
   }
 
   .navigation__button {
@@ -218,8 +257,6 @@
     width: 89%;
     padding: 16px 6% 16px 5%;
     align-items: center;
-    background: rgba(196, 196, 196, 0.01);
-    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .nav {
@@ -249,7 +286,7 @@
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 24px;
-    border-radius: 16px;
+    padding-top: 15px;
   }
 
   .nav__link {
@@ -275,7 +312,6 @@
 
   .nav__list {
     width: 100%;
-    padding-top: 17px;
   }
 
   .nav__button {
@@ -283,6 +319,7 @@
     width: 100%;
     padding: 0 74px;
     font-size: 18px;
+    margin-top: 22px;
   }
 }
 
@@ -292,18 +329,11 @@
     line-height: 24px;
   }
 
-  .nav__links {
-    padding-top: 15px;
-  }
-
   .nav__list {
     padding-top: 0;
   }
 
-  .nav__button {
-    margin-top: 22px;
-  }
-  .navigation__button{
+  .navigation__button {
     width: 16px;
   }
 }

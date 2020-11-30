@@ -2,9 +2,16 @@ import React from 'react';
 import PopupWithForm from '../../components/PopupWithForm/PopupWithForm';
 import {useFormValidation} from '../../hooks/useFormValidation';
 
-function LoginPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpen, onButtonRegisterClick }) {
+function LoginPopup(
+  {
+    isOpen,
+    onClose,
+    onLogin,
+    isLoading,
+    onButtonRegisterClick,
+    loginErrorMessage
+  }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormValidation();
-  const [requestMsg, setRequestMsg] = React.useState(null);
 
   React.useEffect(() => {
     resetForm();
@@ -12,11 +19,11 @@ function LoginPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpe
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!values.email || !values.password || !values.name) {
+    if (!values.email || !values.password) {
       return;
     }
-    //setRequestMsg
-    //onRegister(values);
+    onLogin(values);
+    resetForm();
   }
 
   return (
@@ -26,14 +33,14 @@ function LoginPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpe
       onClose={onClose}
       onSubmit={handleSubmit}
       onButtonClick={onButtonRegisterClick}
-      isRegisterPopupOpen={isRegisterPopupOpen}>
+      linkTo={'login'}
+    >
       <label htmlFor="login-email" className="form__input-label">Email</label>
       <input className="form__input"
              type="email"
              name="email"
              required
              placeholder="Введите свой email"
-             id="login-email"
              value={values.email || ''}
              onChange={handleChange}
       />
@@ -43,14 +50,14 @@ function LoginPopup({ isOpen, onClose, onRegister, isLoading, isRegisterPopupOpe
              type="password"
              name="password"
              required
+             autoComplete="on"
              placeholder="Введите пароль"
-             id="login-password"
              value={values.password || ''}
              onChange={handleChange}
       />
       <span className={`form__error ${isValid ? 'form__error_hide' : ''}`}>{errors.password || ''}</span>
       <span
-        className={`form__error form__error_type_server-msg ${isValid ? 'form__error_hide' : ''}`}>{requestMsg || ''}</span>
+        className={`form__error form__error_type_server-msg ${!loginErrorMessage ? 'form__error_hide' : ''}`}>{loginErrorMessage || ''}</span>
       <input className={`form__submit-button ${!isValid ? 'form__submit-button_inactive' : '' }`}
              type="submit"
              name="submit"
