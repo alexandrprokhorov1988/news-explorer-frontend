@@ -1,0 +1,123 @@
+.about {
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) auto;
+  grid-template-areas: "photo text";
+  grid-gap: 64px;
+  padding-bottom: 80px;
+  transition: all ease 0.5s;
+  max-width: 1232px;
+  width: calc(100% - 14.4%);
+}
+
+.about__photo {
+  width: 100%;
+  object-fit: contain;
+  max-width: 464px;
+  border-radius: 100%;
+  margin-top: 80px;
+  grid-area: photo;
+  align-self: center;
+  transition: all ease 0.5s;
+}
+
+.about__text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  max-width: 600px;
+  width: 100%;
+  grid-area: text;
+  transition: all ease 0.5s;
+}
+
+.about__title {
+  font-family: 'Roboto Slab', 'Arial', 'Helvetica', sans-serif;
+  grid-area: title;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1A1B22;
+  margin: 0;
+  padding: 0;
+  padding-top: 131px;
+}
+
+.about__paragraf {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+  padding: 0;
+  padding-top: 24px;
+  width: 100%;
+  max-width: 600px;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    margin: 0 auto;
+    grid-gap: 32px;
+    padding-bottom: 61px;
+    width: calc(100% - 10.4%);
+    padding-left: 0;
+  }
+
+  .about__photo {
+    max-width: 232px;
+    margin-top: 61px;
+  }
+
+  .about__text-container {
+    max-width: 424px;
+  }
+
+  .about__title {
+    font-size: 30px;
+    line-height: 40px;
+    padding-top: 40px;
+  }
+
+  .about__paragraf {
+    padding-top: 16px;
+    max-width: 424px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about {
+    padding-left: 5%;
+    padding-right: 5%;
+    grid-gap: 24px;
+    padding-bottom: 80px;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: "photo" "text";
+    justify-items: center;
+    width: 100%;
+  }
+
+  .about__photo {
+    max-width: 272px;
+    margin-top: 32px;
+  }
+
+  .about__text-container {
+    max-width: 100%;
+  }
+
+  .about__paragraf {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about {
+    grid-gap: 0;
+  }
+
+  .about__title {
+    padding-top: 20px;
+  }
+}
+

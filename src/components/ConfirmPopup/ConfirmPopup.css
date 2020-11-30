@@ -1,0 +1,12 @@
+.popup__container_type_confirm {
+  text-align: start;
+  padding: 43px 36px 51px 36px;
+}
+
+.popup__change-button_type_confirm{
+  text-align: start;
+  font-size: 18px;
+  line-height: 22px;
+  padding-top: 14px;
+  padding-left: 0;
+}

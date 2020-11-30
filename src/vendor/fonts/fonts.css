@@ -1,0 +1,47 @@
+@font-face {
+  src: url(Inter-Regular.woff2) format('woff2'),
+  url(Inter-Regular.woff) format('woff');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(Roboto-Black.woff2) format("woff2"),
+  url(Roboto-Black.woff) format("woff");
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  src: url(Roboto-Medium.woff2) format("woff2"),
+  url(Roboto-Medium.woff) format("woff");
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  src: url(Roboto-Regular.woff2) format("woff2"),
+  url(Roboto-Regular.woff) format("woff");
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(RobotoSlab-Regular.woff2) format("woff2"),
+  url(RobotoSlab-Regular.woff) format("woff");
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(SourceSansPro-Regular.woff2) format("woff2"),
+  url(SourceSansPro-Regular.woff) format("woff");
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: normal;
+}
