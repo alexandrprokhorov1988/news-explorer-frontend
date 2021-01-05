@@ -3,12 +3,15 @@ import './Navigation.css';
 import logoWhite from '../../images/logout-white.svg';
 import logoBlack from '../../images/logout-black.svg';
 import {Link, useLocation} from 'react-router-dom';
-import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+// import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import {connect} from "react-redux";
+// import currentUser from '../../redux/actionCreators/currentUser';
+import mapStateToProps from "../../redux/mapStateToProps";
 
-function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
+function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen, currentUser }) {
   const [isOpenNav, setIsOpenNav] = React.useState(false);
   const location = useLocation();
-  const currentUser = React.useContext(CurrentUserContext);
+  // const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     if (isPopupOpen) {
@@ -22,7 +25,8 @@ function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
 
   return (
     <div className={`navigation navigation_theme_${theme} ${isOpenNav ? `navigation_type_open-${theme}` : ''}`}>
-      <div className={`navigation__container navigation__container_theme_${theme} ${isOpenNav ? `navigation_container_open-${theme}` : ''}`}>
+      <div
+        className={`navigation__container navigation__container_theme_${theme} ${isOpenNav ? `navigation_container_open-${theme}` : ''}`}>
         <Link className={`navigation__logo navigation__logo_theme_${theme}`} to="/">NewsExplorer</Link>
         {!isPopupOpen &&
         <button onClick={handleOpen}
@@ -65,4 +69,4 @@ function Navigation({ loggedIn, onSignIn, onSignOut, theme, isPopupOpen }) {
   );
 }
 
-export default Navigation;
+export default connect(mapStateToProps("CurrentUser"))(Navigation);

@@ -3,6 +3,7 @@ import './Header.css';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Navigation from '../../components/Navigation/Navigation';
 
+
 function Header({ loggedIn, onSignIn, onSignOut, isPopupOpen, onSearch, isLoading }) {
 
   return (

@@ -9,15 +9,21 @@ import SavedNewsHeader from '../../components/SavedNewsHeader/SavedNewsHeader';
 import RegisterPopup from '../../components/RegisterPopup/RegisterPopup';
 import LoginPopup from '../../components/LoginPopup/LoginPopup';
 import ConfirmPopup from '../../components/ConfirmPopup/ConfirmPopup';
-import mainApi from "../../utils/MainApi";
-import newsApi from "../../utils/NewsApi";
-import {CARD_SEARCH_ERR, CONNECTION_REFUSED, SERVER_ERR} from "../../utils/constants";
-import {CurrentUserContext} from '../../contexts/CurrentUserContext';
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import mainApi from '../../utils/MainApi';
+import newsApi from '../../utils/NewsApi';
+import {CARD_SEARCH_ERR, CONNECTION_REFUSED, SERVER_ERR} from '../../utils/constants';
+// import {CurrentUserContext} from '../../contexts/CurrentUserContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import ErrorMessagePopup from '../../components/ErrorMessagePopup/ErrorMessagePopup';
-import {CARDS_IN_A_ROW} from "../../utils/config";
+import {CARDS_IN_A_ROW} from '../../utils/config';
+import { connect } from "react-redux";
+// import currentUser from "../../redux/actionCreators/currentUser";
+import mapStateToProps from "../../redux/mapStateToProps";
+import mapDispatchToProps from "../../redux/mapDispatchToProps";
+import store from "../../redux/store";
 
-function App() {
+
+function App(props) {
   const history = useHistory();
   const [cards, setCards] = React.useState([]);
   const [savedCards, setSavedCards] = React.useState([]);
@@ -30,7 +36,7 @@ function App() {
   const [loginErrorMessage, setLoginErrorMessage] = React.useState(null);
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState(null);
   const [errorMessage, setErrorMessage] = React.useState('');
-  const [currentUser, setCurrentUser] = React.useState(null);
+  // const [currentUser, setCurrentUser] = React.useState(null);
   const [isFound, setIsFound] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const [searchErr, setSearchErr] = React.useState('');
@@ -88,10 +94,14 @@ function App() {
     mainApi.getUserInfo()
       .then((res) => {
         if (res) {
-          setCurrentUser({
-            id: res._id,
-            name: res.name,
-          });
+          // setCurrentUser({
+          //   id: res._id,
+          //   name: res.name,
+          // });
+          props.changeCurrentUser({
+              id: res._id,
+              name: res.name,
+            });
           setLoggedIn(true);
           setLoginErrorMessage(null);
           localStorage.setItem('news-app', '1');
@@ -297,7 +307,7 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={currentUser}>
+      {/*<CurrentUserContext.Provider value={currentUser}>*/}
         <main className="content">
           <Switch>
             <Route exact path="/">
@@ -378,9 +388,9 @@ function App() {
           />
           }
         </main>
-      </CurrentUserContext.Provider>
+      {/*</CurrentUserContext.Provider>*/}
     </div>
   );
 }
 
-export default App;
+export default connect(mapStateToProps("CurrentUser"), mapDispatchToProps("CurrentUser"))(App);

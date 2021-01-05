@@ -1,12 +1,12 @@
 import React from 'react';
 import './SavedNewsHeader.css';
 import Navigation from '../../components/Navigation/Navigation';
-import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import {connect} from "react-redux";
+import mapStateToProps from "../../redux/mapStateToProps";
 
 function SavedNewsHeader(
-  { loggedIn, titles, onSignIn, onSignOut, isPopupOpen, savedCards }) {
+  { loggedIn, titles, onSignIn, onSignOut, isPopupOpen, savedCards, currentUser }) {
 
-  const currentUser = React.useContext(CurrentUserContext);
   const [category, setCategory] = React.useState([]);
   const [extension, setExtension] = React.useState('');
   const [numArticles, setNumArticles] = React.useState('');
@@ -81,4 +81,5 @@ function SavedNewsHeader(
   );
 }
 
-export default SavedNewsHeader;
+export default connect(mapStateToProps("CurrentUser"))(SavedNewsHeader);
+
